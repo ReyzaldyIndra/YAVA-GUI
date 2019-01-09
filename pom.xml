@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 
 	<properties>  <!-- 2018.5.0 conflict di theme primeface -->
-		<version.wildfly.swarm>2018.3.3</version.wildfly.swarm>
+		<version.wildfly.swarm>2.2.1.Final</version.wildfly.swarm>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
@@ -39,8 +39,8 @@
 
 			<!-- swarm plugin added -->
 			<plugin>
-				<groupId>org.wildfly.swarm</groupId>
-				<artifactId>wildfly-swarm-plugin</artifactId>
+				<groupId>io.thorntail</groupId>
+				<artifactId>thorntail-maven-plugin</artifactId>
 				<version>${version.wildfly.swarm}</version>
 
 				<executions>
@@ -73,7 +73,7 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.wildfly.swarm</groupId>
+				<groupId>io.thorntail</groupId>
 				<artifactId>bom</artifactId>
 				<version>${version.wildfly.swarm}</version>
 				<scope>import</scope>
@@ -94,37 +94,37 @@
 
 		<!-- WildFly Swarm Fractions -->
 		<dependency>
-			<groupId>org.wildfly.swarm</groupId>
+			<groupId>io.thorntail</groupId>
 			<artifactId>cdi</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.wildfly.swarm</groupId>
+			<groupId>io.thorntail</groupId>
 			<artifactId>jsf</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.wildfly.swarm</groupId>
+			<groupId>io.thorntail</groupId>
 			<artifactId>bean-validation</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.wildfly.swarm</groupId>
+			<groupId>io.thorntail</groupId>
 			<artifactId>undertow</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.wildfly.swarm</groupId>
+			<groupId>io.thorntail</groupId>
 			<artifactId>jaxrs</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.wildfly.swarm</groupId>
+			<groupId>io.thorntail</groupId>
 			<artifactId>datasources</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.wildfly.swarm</groupId>
+			<groupId>io.thorntail</groupId>
 			<artifactId>jpa</artifactId>
 		</dependency>
 
