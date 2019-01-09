@@ -1,0 +1,199 @@
+<ui:composition
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+<!-- EXAMPLE-SOURCE-START -->
+
+<h:form >
+	<p:growl id="message"></p:growl>
+	
+	<p:tabView activeIndex="#{tabViewManagedBean.index}">
+	
+		<p:tab title="hdfs-site">
+		
+		<h:panelGrid columns="2" cellpadding="5">
+		    <p:outputLabel value="Type: " />
+		    <p:outputLabel value="#{hdfsView.type}"></p:outputLabel>
+		    
+		    <p:outputLabel value="clusterName: " />
+		    <p:outputLabel value="#{hdfsView.clusterName}"></p:outputLabel>
+		    
+		    <p:outputLabel value="stackId: " />
+			<p:outputLabel value="#{hdfsView.stackId}"></p:outputLabel>
+			
+			<p:outputLabel value="version: " />
+			<p:outputLabel value="#{hdfsView.version}"></p:outputLabel>
+			
+			<p:outputLabel value="Tag: " />
+			<p:outputLabel value="#{hdfsView.tag}"></p:outputLabel>
+			
+			</h:panelGrid>
+			
+			<p:dataTable  var="productEntry"  value="#{hdfsView.properties}">
+			   <p:column>
+			      <h:outputText value="#{productEntry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{productEntry.value}" />
+			   </p:column>
+			</p:dataTable>
+			
+			
+		</p:tab>
+	
+	
+	
+		<p:tab title="hadoop-env">
+		
+		
+			<p:dataTable  var="entry"  value="#{hdfsView.getProperties('hadoop-env')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>
+		
+		</p:tab>
+		
+		<p:tab title="hadoop-metrics2.properties">
+			<p:dataTable  var="entry"  value="#{hdfsView.getProperties('hadoop-metrics2.properties')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>
+ 
+		</p:tab>
+		
+		<p:tab title="hadoop-policy">
+			<p:dataTable  var="entry"  value="#{hdfsView.getProperties('hadoop-policy')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="hdfs-log4j">
+			<p:dataTable  var="entry"  value="#{hdfsView.getProperties('hdfs-log4j')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+	  <p:tab title="ranger-hdfs-plugin-properties">
+		
+			<p:dataTable  var="entry"  value="#{hdfsView.getProperties('ranger-hdfs-plugin-properties')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>
+			
+		</p:tab>
+		<p:tab title="ranger-hdfs-policymgr-ssl">
+			<p:dataTable  var="entry"  value="#{hdfsView.getProperties('ranger-hdfs-policymgr-ssl')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="ssl-client">
+			<p:dataTable  var="entry"  value="#{hdfsView.getProperties('ssl-client')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="ssl-server">
+			<p:dataTable  var="entry"  value="#{hdfsView.getProperties('ssl-server')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="viewfs-mount-table">
+			<p:dataTable  var="entry"  value="#{hdfsView.getProperties('viewfs-mount-table')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="ranger-hdfs-audit">
+			<p:dataTable  var="entry"  value="#{hdfsView.getProperties('ranger-hdfs-audit')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="ranger-hdfs-security">
+			<p:dataTable  var="entry"  value="#{hdfsView.getProperties('ranger-hdfs-security')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="core-site">
+			<p:dataTable  var="entry"  value="#{hdfsView.getProperties('core-site')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="hdfs-site">
+			<p:dataTable  var="entry"  value="#{hdfsView.getProperties('hdfs-site')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+	
+	</p:tabView>
+</h:form>    
+    
+</ui:composition>

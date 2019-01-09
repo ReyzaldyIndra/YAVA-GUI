@@ -1,0 +1,211 @@
+<ui:composition
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+<!-- EXAMPLE-SOURCE-START -->
+
+<h:form >
+	<p:growl id="message"></p:growl>
+	
+	<p:tabView activeIndex="#{tabViewManagedBean.index}">
+	
+		<p:tab title="yarn-site">
+		
+		<h:panelGrid columns="2" cellpadding="5">
+		    <p:outputLabel value="Type: " />
+		    <p:outputLabel value="#{yarnView.type}"></p:outputLabel>
+		    
+		    <p:outputLabel value="clusterName: " />
+		    <p:outputLabel value="#{yarnView.clusterName}"></p:outputLabel>
+		    
+		    <p:outputLabel value="stackId: " />
+			<p:outputLabel value="#{yarnView.stackId}"></p:outputLabel>
+			
+			<p:outputLabel value="version: " />
+			<p:outputLabel value="#{yarnView.version}"></p:outputLabel>
+			
+			<p:outputLabel value="Tag: " />
+			<p:outputLabel value="#{yarnView.tag}"></p:outputLabel>
+			
+			</h:panelGrid>
+			
+			<p:dataTable  var="productEntry"  value="#{yarnView.properties}">
+			   <p:column>
+			      <h:outputText value="#{productEntry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{productEntry.value}" />
+			   </p:column>
+			</p:dataTable>
+			
+			
+		</p:tab>
+	
+	
+	
+		<p:tab title="yarn-env">
+		
+		
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('yarn-env')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>
+		
+		</p:tab>
+		
+		<p:tab title="container-executor">
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('container-executor')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:inputText value="#{entry.value}" />
+			       <p:commandButton value="Submit" icon="pi pi-save" />
+			   </p:column>
+			</p:dataTable>
+ 
+		</p:tab>
+		
+		<p:tab title="ranger-yarn-plugin-properties">
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('ranger-yarn-plugin-properties')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="ranger-yarn-policymgr-ssl">
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('ranger-yarn-policymgr-ssl')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+	  <p:tab title="resource-types">
+		
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('resource-types')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>
+			
+		</p:tab>
+		<p:tab title="yarn-hbase-env">
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('yarn-hbase-env')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="yarn-hbase-log4j">
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('yarn-hbase-log4j')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="yarn-hbase-policy">
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('yarn-hbase-policy')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="yarn-log4j">
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('yarn-log4j')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="yarn-hbase-site">
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('yarn-hbase-site')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="ranger-yarn-audit">
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('ranger-yarn-audit')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="ranger-yarn-security">
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('ranger-yarn-security')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="yarn-site">
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('yarn-site')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+		
+		<p:tab title="capacity-scheduler">
+			<p:dataTable  var="entry"  value="#{yarnView.getProperties('capacity-scheduler')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+	
+	</p:tabView>
+</h:form>    
+    
+</ui:composition>

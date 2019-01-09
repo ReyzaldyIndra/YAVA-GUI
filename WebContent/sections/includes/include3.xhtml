@@ -1,0 +1,543 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<!-- EXAMPLE-SOURCE-START -->
+	<h:form id="tabForm" style="width:100%;">
+		<p:growl id="message"></p:growl>
+		<p:tabView activeIndex="#{tabViewManagedBean.index}">
+			<p:tab title="SUMMARY">
+				<p:breadCrumb style="font-size:10pt">
+					<p:menuitem value="Breadcrumb" />
+					<p:menuitem value="Services" />
+					<p:menuitem value="YARN" />
+					<p:menuitem value="Summary" />
+				</p:breadCrumb>
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-2">Component</div>
+					<div class="ui-g-12 ui-md-10 ui-g-nopad">
+						<div class="ui-g-12 ui-g-nopad">
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="Started"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="TIMELINE SERVICE V1.5"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="Started"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="RESOUCEMANAGER"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="Started"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="TIMELINE SERVICE V2.0 READER"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="Started"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="YARN REGISTER DNS"></p:outputLabel>
+									</div>
+								</div>
+							</div>
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="1/1 Started"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="YARN REGISTER DNS"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="1 Installed"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="YARN CLIENT"></p:outputLabel>
+									</div>
+								</div>
+							</div>
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="2d 23h 57m"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="RESOURCEMANAGER UPTIME"></p:outputLabel>
+									</div>
+								</div>
+							</div>
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<h5>NODEMANAGER STATUS</h5>
+								</div>
+							</div>
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="1"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="Active"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="0"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="Lost"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="0"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="Unhealthy"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="0"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="Rebooted"></p:outputLabel>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</p:tab>
+			<p:tab title="HEATMAPS">
+				<p:breadCrumb style="font-size:10pt">
+					<p:menuitem value="Breadcrumb" />
+					<p:menuitem value="Services" />
+					<p:menuitem value="YARN" />
+					<p:menuitem value="Heatmaps" />
+				</p:breadCrumb>
+				<h:form>
+					<p:growl id="messages" />
+					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+						<p:splitButton id="basic" value="SELECT METRIC"
+							actionListener="#{buttonView.save}" update="messages">
+							<p:menuitem value="Update" actionListener="#{buttonView.update}"
+								update="messages" icon="ui-icon-arrowrefresh-1-w" />
+							<p:menuitem value="Delete" actionListener="#{buttonView.delete}"
+								ajax="false" icon="ui-icon-close" />
+							<p:separator />
+							<p:menuitem value="Homepage" url="http://www.primefaces.org"
+								icon="ui-icon-extlink" />
+						</p:splitButton>
+					</h:panelGrid>
+					<!-- <p:commandButton value="Started" id="withIcon" icon="ui-icon-circle-check" style="color:White;background:Red;"/>
+		       <p:commandButton value="Started" id="withIcon" icon="ui-icon-circle-check" style="background:Red;"/>
+		       <p:commandButton id="withIcon" icon="ui-icon-circle-check" style="color:White;background:Red;"/> -->
+
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-4">
+							<div>
+								<p:commandButton value="-" style="background:Lightgreen;" />
+								<p:outputLabel value="0% - 20%"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Green;" />
+								<p:outputLabel value="20 - 40%"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Yellow;" />
+								<p:outputLabel value="40% - 60%"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Orange;" />
+								<p:outputLabel value="60% - 80%"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Red;" />
+								<p:outputLabel value="80% - 100%"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Grey;" />
+								<p:outputLabel value="Invalid data"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Black;" />
+								<p:outputLabel value="Data Not Available"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Lightgrey;" />
+								<p:outputLabel value="Not Applicable"></p:outputLabel>
+							</div>
+						</div>
+					</div>
+					<div>
+						<p:outputLabel value="Maximum:"></p:outputLabel>
+					</div>
+					<div>
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-4">
+								<div class="ui-inputgroup">
+									<p:inputText placeholder="100" />
+									<p:commandButton value="%" styleClass="white-button" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</h:form>
+			</p:tab>
+			<p:tab title="CONFIGS">
+				<p:breadCrumb style="font-size:10pt">
+					<p:menuitem value="Breadcrumb" />
+					<p:menuitem value="Services" />
+					<p:menuitem value="YARN" />
+					<p:menuitem value="Config" />
+				</p:breadCrumb>
+				<p:tabView>
+					<p:tab title="SETTINGS">
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-10 ui-g-nopad">
+								<div class="ui-g-12 ui-g-nopad">
+									<div class="ui-g">
+										<div class="ui-g-12 ui-md-8">
+											<p:panel id="basic" header="Memory"
+												style="margin-bottom:10px">
+												<h:panelGrid columns="1" style="margin-bottom: 10px">
+													<p:inputText id="txt3" value="#{sliderView.number5}" />
+													<p:slider for="txt3" step="10" maxValue="100" />
+												</h:panelGrid>
+											</p:panel>
+										</div>
+										<div class="ui-g-12 ui-md-4">
+											<p:panel id="basic2" header="YARN Features"
+												style="margin-bottom:20px">
+												<h:panelGrid columns="2" cellpadding="10">
+
+												</h:panelGrid>
+											</p:panel>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</p:tab>
+					<p:tab title="ADVANCED">
+						<p:accordionPanel>
+							<p:tab title="yarn-site">
+
+								<h:panelGrid columns="2" cellpadding="5">
+									<p:outputLabel value="Type: " />
+									<p:outputLabel value="#{yarnView.type}"></p:outputLabel>
+
+									<p:outputLabel value="clusterName: " />
+									<p:outputLabel value="#{yarnView.clusterName}"></p:outputLabel>
+
+									<p:outputLabel value="stackId: " />
+									<p:outputLabel value="#{yarnView.stackId}"></p:outputLabel>
+
+									<p:outputLabel value="version: " />
+									<p:outputLabel value="#{yarnView.version}"></p:outputLabel>
+
+									<p:outputLabel value="Tag: " />
+									<p:outputLabel value="#{yarnView.tag}"></p:outputLabel>
+
+								</h:panelGrid>
+
+								<p:dataTable var="productEntry" value="#{yarnView.properties}">
+									<p:column>
+										<h:outputText value="#{productEntry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{productEntry.value}" />
+									</p:column>
+								</p:dataTable>
+
+
+							</p:tab>
+
+
+
+							<p:tab title="yarn-env">
+
+
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('yarn-env')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{entry.value}" />
+									</p:column>
+								</p:dataTable>
+
+							</p:tab>
+
+							<p:tab title="container-executor">
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('container-executor')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:inputText value="#{entry.value}" />
+										<p:commandButton value="Submit" icon="pi pi-save" />
+									</p:column>
+								</p:dataTable>
+
+							</p:tab>
+
+							<p:tab title="ranger-yarn-plugin-properties">
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('ranger-yarn-plugin-properties')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{entry.value}" />
+									</p:column>
+								</p:dataTable>
+							</p:tab>
+
+							<p:tab title="ranger-yarn-policymgr-ssl">
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('ranger-yarn-policymgr-ssl')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{entry.value}" />
+									</p:column>
+								</p:dataTable>
+							</p:tab>
+
+							<p:tab title="resource-types">
+
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('resource-types')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{entry.value}" />
+									</p:column>
+								</p:dataTable>
+
+							</p:tab>
+							<p:tab title="yarn-hbase-env">
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('yarn-hbase-env')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{entry.value}" />
+									</p:column>
+								</p:dataTable>
+							</p:tab>
+
+							<p:tab title="yarn-hbase-log4j">
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('yarn-hbase-log4j')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{entry.value}" />
+									</p:column>
+								</p:dataTable>
+							</p:tab>
+
+							<p:tab title="yarn-hbase-policy">
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('yarn-hbase-policy')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{entry.value}" />
+									</p:column>
+								</p:dataTable>
+							</p:tab>
+
+							<p:tab title="yarn-log4j">
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('yarn-log4j')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{entry.value}" />
+									</p:column>
+								</p:dataTable>
+							</p:tab>
+
+							<p:tab title="yarn-hbase-site">
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('yarn-hbase-site')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{entry.value}" />
+									</p:column>
+								</p:dataTable>
+							</p:tab>
+
+							<p:tab title="ranger-yarn-audit">
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('ranger-yarn-audit')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{entry.value}" />
+									</p:column>
+								</p:dataTable>
+							</p:tab>
+
+							<p:tab title="ranger-yarn-security">
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('ranger-yarn-security')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{entry.value}" />
+									</p:column>
+								</p:dataTable>
+							</p:tab>
+
+							<p:tab title="yarn-site">
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('yarn-site')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{entry.value}" />
+									</p:column>
+								</p:dataTable>
+							</p:tab>
+
+							<p:tab title="capacity-scheduler">
+								<p:dataTable var="entry"
+									value="#{yarnView.getProperties('capacity-scheduler')}">
+									<p:column>
+										<h:outputText value="#{entry.key}" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{entry.value}" />
+									</p:column>
+								</p:dataTable>
+							</p:tab>
+						</p:accordionPanel>
+					</p:tab>
+				</p:tabView>
+
+			</p:tab>
+			<p:tab title="METRICS">
+
+
+				<h:panelGrid columns="2" cellpadding="0" value="test"
+					style="width:100%">
+					<p:breadCrumb style="font-size:10pt;float:left;width:60%">
+						<p:menuitem value="Breadcrumb" />
+						<p:menuitem value="Services" />
+						<p:menuitem value="YARN" />
+						<p:menuitem value="Metrics" />
+					</p:breadCrumb>
+
+					<h:panelGrid columns="2" cellpadding="0" value="test"
+						style="font-size:10pt;width:40%;float:right">
+						<p:button value="Action" icon="fa fa-star"
+							style="font-size:10pt;float:right">
+							<f:param name="Metric" />
+						</p:button>
+						<p:button value="Last" icon="fa fa-dropdown" style="float:right">
+							<f:param name="Last" />
+						</p:button>
+					</h:panelGrid>
+
+				</h:panelGrid>
+
+
+
+				<div style="height: 500px; width: 100%">
+					<h:form>
+						<p:growl id="msgs" showDetail="true" />
+
+						<p:dashboard id="board" model="#{yarnMetricView.model}">
+							<p:ajax event="reorder"
+								listener="#{yarnMetricView.handleReorder}" update="msgs" />
+
+							<p:panel id="memoryUsage" header="Memory Usage"
+								style="height:150px;margin:10px;width:230px">
+								<p:chart id="pie" type="pie" model="#{chartView.pieModel1}"
+									style="height:120px" />
+								<p:poll interval="1" update="pie" />
+							</p:panel>
+
+							<p:panel id="clusterLoad" header="Cluster Load"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Finance Content" />
+							</p:panel>
+
+							<p:panel id="networkUsage" header="Network Usage"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Lifestyle Content" />
+							</p:panel>
+
+							<p:panel id="HDFSDiskUsage" header="HDFS Disk Usage"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Weather Content" />
+							</p:panel>
+
+							<p:panel id="nameNodeHeap" header="NameNode Heap"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Politics Content" />
+							</p:panel>
+
+							<p:panel id="nameNodeCPUWIO" header="NameNode CPU WIO"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Politics Content" />
+							</p:panel>
+
+							<p:panel id="CPUUsage" header="CPU Usage"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Politics Content" />
+							</p:panel>
+
+							<p:panel id="resourceManageHeap" header="Resource Manage Heap"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Politics Content" />
+							</p:panel>
+
+						</p:dashboard>
+
+						<div style="clear: both" />
+					</h:form>
+				</div>
+
+			</p:tab>
+
+		</p:tabView>
+	</h:form>
+
+</ui:composition>
+

@@ -1,0 +1,17 @@
+Tutorial Menjalankan Website Yava-Solusi247
+
+Tools yang perlu disiapkan
+- Maven
+- JBoss
+- Eclipse IDE
+- Wildfly-Swarm
+
+Compile
+    - pastikan terhubung dengan wifi chantel02
+    - masuk pada folder yava-gui
+    - jalankan dengan maven --> $ mvn clean package
+    - pastikan build success
+Run
+    - masuk folder target
+    - jalankan file java hasil compile dengan $ java -jar ErsteJSF-1.0.0-swarm.jar -s ../project-mysql.yaml
+    - buka browser masukkan localhost:8080/fullPageLayout.xhtml

@@ -1,0 +1,263 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+        
+<!-- EXAMPLE-SOURCE-START -->
+<h:form id="tabFormDash" style="width:1100x;">
+
+    	<p:growl id="messageDash"></p:growl>
+	<p:tabView activeIndex="#{tabViewManagedBean.index}">
+
+		<p:tab title="METRICS">
+		
+		<h:panelGrid columns="2" cellpadding="0" value="test" style="width:100%">
+			<p:breadCrumb style="font-size:10pt; float:left; width:60%">
+		    	<p:menuitem value="Breadcrumb"/>
+		    	<p:menuitem value="Dashboard"/>
+		    	<p:menuitem value="Metrics"/>
+			</p:breadCrumb>
+			
+			<h:panelGrid columns="2" cellpadding="0" value="test" style="width:40%; float:right">
+				<p:tieredMenu>
+					<p:submenu label="Metric Actions" >				       			        				        								
+						<p:menuitem value="add" icon="fa fa-plus-circle"/>
+						<!-- <p:selectCheckboxMenu id="add" label="Add" icon="fa fa-plus-circle" columns="1">
+					        <f:selectItem itemLabel="HDFS Link" itemValue="HDFS Link"/>
+					        <f:selectItem itemLabel="YARN Link" itemValue="YARN Link"/>
+					        <f:selectItem itemLabel="HBase Link" itemValue="HBase Link"/>
+					    </p:selectCheckboxMenu>
+				    	<p:separator/>
+ 						<p:commandButton value="Add" icon="fa fa-check" /> --> 						                                              
+			        				        				        
+			        	<p:submenu label="Edit" icon="fa fa-pencil">
+			            	<p:menuitem value="Reset all widget to default" style ="font-size:10pt"/>
+			        	</p:submenu> 
+			        </p:submenu>
+			    </p:tieredMenu>                
+				<p:tieredMenu>
+					<p:submenu label="Periode">
+		    			<p:menuitem value="Last 1 Hours"/>
+		    			<p:menuitem value="Last 2 Hours"/>
+		    			<p:menuitem value="Last 4 Hours"/>
+		    			<p:menuitem value="Last 12 Hours"/>
+		    			<p:menuitem value="Last 24 Hours"/>
+		    			<p:menuitem value="Last 1 week"/>
+		    			<p:menuitem value="Last 1 month"/>
+		    			<p:menuitem value="Last 1 year"/>
+		    			<p:menuitem value="Custom"/>
+		    		</p:submenu>    				    			
+				</p:tieredMenu>
+			</h:panelGrid>
+			
+		</h:panelGrid>
+			<style type="text/css">
+            .ui-panel, div.ui-state-hover {
+                margin: 10px;
+                width:240px;
+            }
+             
+            .ui-dashboard-column {
+                width:260px;
+            }
+      	  </style>
+  
+			<div style="height:100%">
+			    <h:form>
+			        <p:growl id="msgs" showDetail="true" />
+			 
+			        <p:dashboard id="board" model="#{dashboardView.model}">
+			            <p:ajax event="reorder" listener="#{dashboardView.handleReorder}" update="msgs" />
+			 
+			            <p:panel id="memoryUsage" header="Memory Usage" style="font-size:12pt">
+			            	<p:chart id="memory" type="line" model="#{chartView.lineModel1}" style="width:100%; height:120px"/>
+							<p:poll interval="1" update="memory"/>
+			            </p:panel>
+			 
+			            <p:panel id="clusterLoad" header="Cluster Load" style="font-size:12pt">
+			                <p:chart id="cluster" type="line" model="#{chartView.lineModel3}" style="width:100%; height:120px"/>
+							<p:poll interval="1" update="cluster"/>
+			            </p:panel>
+			 
+			            <p:panel id="networkUsage" header="Network Usage" style="font-size:12pt">
+							<p:chart id="network" type="line" model="#{chartView.lineModel2}" style="width:100%; height:120px"/>
+							<p:poll interval="1" update="network"/>
+			            </p:panel>
+			 
+			            <p:panel id="HDFSDiskUsage" header="HDFS Disk Usage" style="font-size:12pt">
+			 				<p:chart id="hdfs" type="donut" model="#{chartView.donutModel2}" style="width:100%; height:120px"/>
+							<p:poll interval="1" update="hdfs"/>
+			             </p:panel>
+			 
+			            <p:panel id="nameNodeHeap" header="NameNode Heap" style="font-size:12pt">
+			                <p:chart id="nameNode" type="donut" model="#{chartView.donutModel1}" style="width:100%; height:120px"/>
+							<p:poll interval="1" update="nameNode"/>									  
+			            </p:panel>
+			            
+			            <p:panel id="nameNodeCPUWIO" header="NameNode CPU WIO" style="font-size:12pt">
+			                <p:chart id="nameNodeCPU" type="donut" model="#{chartView.donutModel3}" style="width:100%; height:120px"/>
+							<p:poll interval="1" update="nameNodeCPU"/>
+			            </p:panel>
+			            
+			            <p:panel id="CPUUsage" header="CPU Usage" style="font-size:12pt">
+							<p:chart id="cpu" type="line" model="#{chartView.areaModel1}" style="width:100%; height:120px"/>
+							<p:poll interval="1" update="cpu"/>
+			            </p:panel>
+			            
+			            <p:panel id="resourceManageHeap" header="Resource Manage Heap" style="font-size:12pt">
+			                <p:chart id="resourceManage" type="donut" model="#{chartView.donutModel4}" style="width:100%; height:120px"/>
+							<p:poll interval="1" update="resourceManage"/>
+			            </p:panel>
+			            
+			            <p:panel id="hbaseMasterHeap" header="HBase Master Heap" style="font-size:12pt">
+			                <p:chart id="hbaseMaster" type="donut" model="#{chartView.donutModel5}" style="width:100%; height:120px"/>
+							<p:poll interval="1" update="hbaseMaster"/>
+			            </p:panel>
+			            
+			            <p:panel id="NameNodeRPC" header="NameNode RPC" style="font-size:12pt">
+			                
+			            </p:panel>
+			            			           
+			        </p:dashboard>
+			 
+			        <div style="clear:both" />
+			    </h:form>
+			</div>
+    	</p:tab>
+		
+	     
+	    <p:tab title="HEATMAPS">
+	    <p:breadCrumb style="font-size:10pt">
+		    	<p:menuitem value="Breadcrumb"/>
+		    	<p:menuitem value="Dashboard"/>
+		    	<p:menuitem value="Heatmaps"/>
+			</p:breadCrumb>
+	    <h:form>
+			 <div class="ui-g">
+                    	<div class="ui-g-12 ui-md-6">
+                    			<p:growl id="messages" />
+                    			
+    							<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">	
+    													
+									<h:panelGrid style="background:White ; border:Grey" cellpadding="5">
+									
+										<p:tieredMenu style="width:150px">
+										<p:submenu label="Select Metric" >
+									        <p:submenu label="Host">
+									            <p:menuitem value="Host Memory Used %" style ="font-size:10pt"/>
+									            <p:menuitem value="Host CPU Wait IO % " style ="font-size:10pt"/>
+									            <p:menuitem value="Host Disk Space Used %" style ="font-size:10pt"/>
+									        </p:submenu>
+									        <p:submenu label="YARN">
+									            <p:menuitem value="Total Allocatable RAM Utilized per NodeManager" style ="font-size:10pt" />
+									            <p:menuitem value="Total Allocatable CPU Utilized per NodeManager" style ="font-size:10pt"/>
+									            <p:menuitem value="Container Failures" style ="font-size:10pt"/>
+									            <p:menuitem value="NodeManagerGC Time" style ="font-size:10pt"/>
+									            <p:menuitem value="NodeManager JVM Heap Memory Used" style ="font-size:10pt"/>
+									            <p:menuitem value="Allocated Containers" style ="font-size:10pt"/>
+									            <p:menuitem value="NodeManager RAM Utilized" style ="font-size:10pt"/>
+									            <p:menuitem value="NodeManager CPU Utilized" style ="font-size:10pt"/>
+									            <p:menuitem value="YARN local disk space utilization per NodeManager" style ="font-size:10pt"/>
+									        </p:submenu>
+									       <p:submenu label="HDFS">
+									            <p:menuitem value="HDFS Bytes Written" style ="font-size:10pt"/>
+									            <p:menuitem value="DataNode Garbage Collection Time" style ="font-size:10pt"/>
+									            <p:menuitem value="DataNode JVM Heap Memory Used" style ="font-size:10pt"/>
+									            <p:menuitem value="DataNode JVM Heap Memory Commited" style ="font-size:10pt"/>
+									            <p:menuitem value="DataNode Process Disk I/O Utilization" style ="font-size:10pt"/>
+									            <p:menuitem value="DataNode Process Network I/O Utilization" style ="font-size:10pt"/>
+									            <p:menuitem value="HDFS Space Utilization" style ="font-size:10pt"/>
+									            <p:menuitem value="HDFS Bytes Read" style ="font-size:10pt"/>
+									        </p:submenu>
+									        <p:submenu label="HBase">
+									            <p:menuitem value="HBase Memstore Sizes" style ="font-size:10pt"/>
+									            <p:menuitem value="HBase Read Request Count" style ="font-size:10pt"/>
+									            <p:menuitem value="HBase Write Request Count" style ="font-size:10pt"/>
+									            <p:menuitem value="HBase Regions" style ="font-size:10pt"/>
+									            <p:menuitem value="HBase Compaction Queue Size" style ="font-size:10pt"/>
+									        </p:submenu>
+									    </p:submenu>
+									    </p:tieredMenu>								      							
+                    		
+	                    		<h:panelGrid columns="2">
+	                    		<div class="tile" style="background:Lightgreen; height:20px; width:40px">                   
+	                    			<p:outputLabel value="0MB - 205MB"/>
+	                    		</div>
+	                    		<div class="tile" style="background:Green; height:20px; width:40px">                    			
+	                    			<p:outputLabel value="205MB - 410MB"/>
+	                    		</div>
+	                    		<div class="tile" style="background:Yellow; height:20px; width:40px">
+	                    			<p:outputLabel value="410MB - 614MB"/>
+	                    		</div>
+	                    		<div  class="tile" style="background:Orange; height:20px; width:40px">
+	                    			<p:outputLabel value="614MB - 819MB"/>
+	                    		</div>
+	                    		<div class="tile" style="background:Red; height:20px; width:40px">
+	                    			<p:outputLabel value="819MB - 1024MB"/>
+	                    		</div>
+	                    		<div class="tile" style="background:Grey; height:20px; width:40px">
+	                    			<p:outputLabel value="Invalid data"/>
+	                    		</div>
+	                    		<div class="tile" style="background:Black; height:20px; width:40px">
+	                    			<p:outputLabel value="Data Not Available"/>
+	                    		</div>
+	                    		<div class="tile" style="background:Lightgrey; height:20px; width:40px">
+	                    			<p:outputLabel value="Not Applicable"/>
+	                    		</div>
+	                    		
+		                    	
+	                    		</h:panelGrid>						    
+						    	<div>
+				            		<p:outputLabel value="Maximum:"/>			            
+				            	</div>   
+			            	
+				                <div>
+				        			<div class="ui-g ui-fluid">			    					
+				        					<div class="ui-inputgroup">
+				            					<p:inputText placeholder="1024" style="length:200"/>
+				            					<p:commandButton value="MB"  styleClass="white-button"/>
+				        					</div>
+									</div>
+				            	</div>
+				            	
+			            </h:panelGrid>
+			            <div>
+                    		<div>
+            					<h2>HDFS Bytes Read</h2>
+            				</div>
+            				<div>
+            					<p:outputLabel value="/default-rack"></p:outputLabel>
+            				</div>
+            				<h:panelGrid columns="3" style="background:white" cellpadding="3">
+	            				<div class="tile" style="background:Green; height:20px; width:40px">
+	            					<div class="tile" style="background:Green; height:20px; width:40px">
+	            						<div class="tile" style="background:Green; height:20px; width:40px"/>
+	            					</div>
+	            				</div>
+	            			</h:panelGrid>                  		
+                    	</div>     		            			                                	                    	               	         	            	
+            	</h:panelGrid>
+            			
+            	</div>
+            	</div>
+			</h:form>
+		</p:tab>
+		
+		<p:tab title="CONFIG HISTORY">	
+			<p:breadCrumb style="font-size:10pt">
+		    	<p:menuitem value="Breadcrumb"/>
+		    	<p:menuitem value="Dashboard"/>
+		    	<p:menuitem value="Config History"/>
+			</p:breadCrumb>
+				
+		</p:tab>
+		
+	</p:tabView>    
+	
+</h:form>    
+
+</ui:composition>
+    

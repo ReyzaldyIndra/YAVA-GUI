@@ -1,0 +1,215 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+        
+<!-- EXAMPLE-SOURCE-START -->
+<h:form id="tabForm" style="width:1100px;">
+
+	<p:growl id="message"></p:growl>
+	
+	<p:tabView activeIndex="#{tabViewManagedBean.index}">
+	
+	     <p:tab title="SUMMARY">
+      	<h:panelGrid columns="2" cellpadding="0" value="test" style="width:100%">       
+        <p:breadCrumb style="font-size:10pt; float:left; width:70%">
+		   	<p:menuitem value="Breadcrumb"/>
+		   	<p:menuitem value="Services"/>
+		   	<p:menuitem value="MapReduce"/>
+		    <p:menuitem value="Summary"/>
+		</p:breadCrumb>
+		<h:panelGrid columns="2" cellpadding="0" value="test" style="width:30%; float:right">				
+			<p:menuButton value="Actions" style="font-size:10pt">
+		        <p:menuitem value="Start" icon="fa fa-arrow-circle-right" style ="font-size:10pt"/>							
+		        <p:menuitem value="Stop"  icon="fa fa-ban" style ="font-size:10pt"/>
+		        <p:menuitem value="Restart All"  icon="fa fa-history" style ="font-size:10pt"/>
+		        <p:menuitem value="Move History Server"  icon="fa fa-arrows" style ="font-size:10pt"/>
+		        <p:menuitem value="Run Service Check"  icon="fa fa-check " style ="font-size:10pt"/>
+		        <p:menuitem value="Turn On Maintenance Mode"  icon="fa fa-medkit" style ="font-size:10pt"/>
+		        <p:menuitem value="Download Client Configs"  icon="fa fa-cloud-download" style ="font-size:10pt"/>
+		        <p:menuitem value="Delete Service"  icon="fa fa-close (alias)" style ="font-size:10pt"/>				        				       
+		    </p:menuButton>                      
+        </h:panelGrid>
+        </h:panelGrid>
+        
+    	<div class="ui-g">
+       		<div class="ui-g-12 ui-md-2">Component</div>
+        	<div class="ui-g-12 ui-md-10 ui-g-nopad">
+            	<div class="ui-g-12 ui-g-nopad">
+                	<div class="ui-g">
+		                <div class="ui-g">							
+							<div class="ui-g-12 ui-md-3">
+								<div>
+									<p:commandButton value="Started" id="historyserver" icon="ui-icon-circle-check"/>
+								</div>
+								<div>
+									<p:outputLabel value="History Server"/>
+								</div>
+							</div>
+						</div>
+            		</div>
+           		</div>
+       		</div>
+    	</div> 
+    	
+    	<div class="ui-g">
+    	<div class="ui-g-12 ui-md-2"></div>
+        	<div class="ui-g-12 ui-md-10 ui-g-nopad">
+            	<div class="ui-g-12 ui-g-nopad">
+                	<div class="ui-g">
+                    <div class="ui-g-12 ui-md-4">
+                    	<div>
+                    		<p:outputLabel value="Installed"/>
+                    	</div>
+                    	<div>
+                    		<p:outputLabel value="MapReduce2 CLIENT"/>
+                    	</div>
+                    </div>
+            		</div>
+           		</div>
+       		</div>
+    	</div>    	   
+		</p:tab>
+	
+	
+	    <p:tab title="CONFIGS">
+	    <h:panelGrid columns="2" cellpadding="0" value="test" style="width:100%">
+	    <p:breadCrumb style="font-size:10pt; float:left; width:70%">
+		   	<p:menuitem value="Breadcrumb"/>
+		   	<p:menuitem value="Services"/>
+		   	<p:menuitem value="MapReduce"/>
+		    <p:menuitem value="Config"/>
+		</p:breadCrumb>
+		
+		<h:panelGrid columns="2" cellpadding="0" value="test" style="width:30%; float:right">				
+					<p:menuButton value="Actions" style="font-size:10pt">
+				        <p:menuitem value="Start" icon="fa fa-arrow-circle-right" style ="font-size:10pt"/>							
+				        <p:menuitem value="Stop"  icon="fa fa-ban" style ="font-size:10pt"/>
+				        <p:menuitem value="Restart All"  icon="fa fa-history" style ="font-size:10pt"/>
+				        <p:menuitem value="Move History Server"  icon="fa fa-arrows" style ="font-size:10pt"/>
+				        <p:menuitem value="Run Service Check"  icon="fa fa-check " style ="font-size:10pt"/>
+				        <p:menuitem value="Turn On Maintenance Mode"  icon="fa fa-medkit" style ="font-size:10pt"/>
+				        <p:menuitem value="Download Client Configs"  icon="fa fa-cloud-download" style ="font-size:10pt"/>
+				        <p:menuitem value="Delete Service"  icon="fa fa-close (alias)" style ="font-size:10pt"/>				        				       
+				    </p:menuButton>                
+        </h:panelGrid>
+        </h:panelGrid>
+        
+        
+        <h:panelGrid columns="2" cellpadding="0" value="test" style="width:100%">        	
+		    <p:menuButton value="Version" style="font-size:10pt; float:left; width:65%"/>		        		    
+		    <h:panelGrid columns="3" cellpadding="0" value="test" style="width:35%; float:right">
+		    	<p:outputLabel value="Config Group" style="float:right; font-size:10pt; margin:0; padding:0"/>
+		    	<p:menuButton value="Default (3)" style="float:right; font-size:10pt; margin:0; padding:0">
+	    			<p:menuitem value="Default (3)" style="font-size:10pt"/>	    			
+	    			<p:menuitem value="Manage Config Groups" style="font-size:10pt"/>
+				</p:menuButton>
+				<p:menuButton value="Filter" style="float:right; font-size:10pt; margin:0; padding:0">
+		            <p:menuitem value="Final Properties" style="font-size:10pt"/>
+		            <p:menuitem value="Overridden Properties" style="font-size:10pt"/>		            
+		            <p:menuitem value="Show Property Issues" style="font-size:10pt"/>
+		        </p:menuButton>
+		    </h:panelGrid>
+		</h:panelGrid>
+		
+        	<p:tabView>        
+        	<p:tab title="SETTING">
+        	 <h3>MapReduce2</h3>
+        	 
+        	 <h7>MapReduce Framework</h7>
+			 
+			 <div class="ui-g">
+    			<div class="ui-g-8 ui-g-nopad">
+        		<div class="ui-g-6">
+        		<h5>Map Memory</h5>
+    			<h:panelGrid columns="1" style="margin-bottom: 10px">
+        			<p:inputText id="txt1" value="#{sliderview.number1}" />
+       				<p:slider for="txt1" step="1" maxValue="100" />
+    			</h:panelGrid>
+    			
+        		</div>
+        		<div class="ui-g-6">
+        		<h5>Reduce Memory</h5>
+    			<h:panelGrid columns="1" style="margin-bottom: 10px">
+        			<p:inputText id="txt2" value="#{sliderview.number3}" />
+       				<p:slider for="txt2" step="1" maxValue="100" />
+    			</h:panelGrid>
+        		</div>
+        		<div class="ui-g-12">
+        		<h5>AppMaster Memory</h5>
+    			<h:panelGrid columns="1" style="margin-bottom: 80px">
+        			<p:inputText id="txt4" value="#{sliderview.number5}" />
+       				<p:slider for="txt4" step="1" maxValue="100" />
+    			</h:panelGrid>
+        		</div>
+    			</div>
+    		<div class="ui-g-4">
+    		<h5>Sort Allocation Memory</h5>
+    			<h:panelGrid columns="1" style="margin-bottom: 10px">
+        			<p:inputText id="txt3" value="#{sliderview.number4}" />
+       				<p:slider for="txt3" step="1" maxValue="100" />
+    			</h:panelGrid>
+    			
+    		</div>
+			</div>
+        	
+        	</p:tab>
+        	
+        	<p:tab title="ADVANCED">
+        		<p:accordionPanel multiple="true">        		
+					<p:tab title="Advanced mapred-site">
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="Type			:"/>
+							<p:outputLabel value="#{mapreduceView.type}"/>
+							<p:outputLabel value="clusterName	:"/>
+							<p:outputLabel value="#{mapreduceView.clusterName}"/>
+							<p:outputLabel value="stackId		:"/>
+							<p:outputLabel value="#{mapreduceView.stackId}"/>
+							<p:outputLabel value="version		:"/>
+							<p:outputLabel value="#{mapreduceView.version}"/>
+							<p:outputLabel value="Tag			:"/>
+							<p:outputLabel value="#{mapreduceView.tag}"/>
+						</h:panelGrid>
+						<p:dataTable var="productEntry" value="#{mapreduceView.properties}">
+							<p:column>
+								<h:outputText value="#{productEntry.key}"/>
+							</p:column>
+							<p:column>
+								<h:inputText value="#{productEntry.value}"/>
+							</p:column>
+							<p:column style="width:110px">
+								<div class="ui-g-4"><p:commandLink styleClass="ui-icon fa fa-lock"/></div>
+								<div class="ui-g-4"><p:commandLink styleClass="ui-icon fa fa-pencil"/></div>
+								<div class="ui-g-4"><p:commandLink styleClass="ui-icon fa fa-thumbs-o-up"/></div>							
+							</p:column>
+						</p:dataTable>
+					</p:tab>
+					<p:tab title="Advanced mapred-env">
+						<p:dataTable var="entry" value="#{mapreduceView.mapredParam}">
+							<p:column>
+								<h:outputText value="#{entry.key}"/>
+							</p:column>
+							
+							<p:column>
+								<h:inputText  value="#{entry.value}"/>
+							</p:column>														
+							
+							<f:facet name="footer">
+								<p:commandButton value="Submit" action="#{mapreduceView.submitAction()}" ajax="false"/>								
+							</f:facet>
+						
+						</p:dataTable>
+					</p:tab>					
+		    	</p:accordionPanel>
+        	</p:tab>
+        	</p:tabView>
+		</p:tab>
+		
+	</p:tabView>
+</h:form>    
+
+
+  </ui:composition>

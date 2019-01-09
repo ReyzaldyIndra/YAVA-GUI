@@ -1,0 +1,54 @@
+swarm:
+  bind:
+    address: 0.0.0.0
+  
+  datasources:
+    jdbc-drivers:
+      com.mysql:
+        driver-class-name: com.mysql.jdbc.Driver
+        xa-datasource-class-name: com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+        driver-module-name: com.mysql
+      org.postgresql:
+        driver-class-name: org.postgresql.Driver
+        xa-datasource-class-name: org.postgresql.xa.PGXADataSource
+        driver-module-name: org.postgresql
+    data-sources:
+      TrainingDS:
+        driver-name: com.mysql
+        connection-url: jdbc:mysql://192.168.1.203:3306/trainingDB
+        user-name: training
+        password: training123
+      AmbariDS:
+        driver-name: postgresql
+        connection-url: jdbc:postgresql://192.168.1.231:5432/ambari
+        user-name: ambari
+        password: bigdata
+        valid-connection-checker-class-name: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
+        validate-on-match: true
+        background-validation: false
+        exception-sorter-class-name: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter
+
+        
+  logging:
+    file-handlers:
+      time_service_handler:
+        append: true
+        enabled: true
+        encoding: UTF-8
+        level: DEBUG
+        file:
+          path: "swarm-server.log"
+    console-handlers:
+      CONSOLE:
+        level: INFO
+    loggers:
+      com.poin:
+        use-parent-handlers: true
+        level: DEBUG
+        handlers:
+          - time_service_handler
+    root-logger:
+      level: INFO
+      handlers:
+        - time_service_handler
+        

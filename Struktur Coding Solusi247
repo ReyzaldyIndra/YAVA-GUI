@@ -1,0 +1,29 @@
+Stuktur Source Code
+
+1. pom.xml      --> berisi dependency yang diperlukan
+
+2. WebContent   --> berisi file .xhtml yang menjadi front-end dari website
+    a. file fullPageLayout.xhtml    --> merupakan file halaman utama yang dijalankan
+    b. folder resources             --> berisi file css untuk style
+    c. folder section/includes      --> berisi file halaman-halaman web yang bisa di-click dari fullPageLayout
+    d. file project-mysql.yaml      --> berisi konfigurasi database (sementara masih postgresql)
+
+3. Folder src   --> berisi file .java yang menjadi back-end dari website
+    a. package com.verdin.jsf.bean      --> berisi file-file yang menghubungkan ke database 192.168.3.132 dengan rest
+    b. package com.verdin.jsf.domain    --> 
+    c. package com.verdin.jsf.ejb       --> berisi file-file lain yang juga menghubungkan dengan database dengan rest
+    d. package com.verdin.jsf.hdfs      --> berisi file-file yang menghubungkan ke data hdfs
+    e. package com.verdin.jsf.model     --> berisi file-file yang menghubungkan ke data host menggunakan jdbc langsung, hbase dengan rest dan pojoConfigurationUtil
+    f. package com.verdin.jsf.showcase  --> 
+    g. package com.verdin.jsf.test      -->
+    h. package com.verdin.jsf.theme     --> berisi file java yang berkaitan dengan theme switcher
+    
+    i. package javax                    --> berisi annotation
+    
+4. Folder target    --> berisi file hasil compile (.jar) dan swarm log (.log)
+
+5. ambari_erd.png   --> berisi bentuk relasi database ambari
+
+6. Folder Ambari api--> berisi file2 jar http client untuk pendukung rest
+
+7. File get metric  --> berisi perintah mengambil data metric dari database menggunakan rest

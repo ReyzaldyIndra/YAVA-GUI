@@ -1,0 +1,710 @@
+<ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<!-- EXAMPLE-SOURCE-START -->
+
+	<h:form id="tabForm" style="width:100%;">
+		<p:growl id="message"></p:growl>
+
+		<p:tabView activeIndex="#{tabViewManagedBean.index}">
+			<p:tab title="SUMMARY">
+				<p:breadCrumb style="font-size:10pt">
+					<p:menuitem value="Breadcrumb" />
+					<p:menuitem value="Services" />
+					<p:menuitem value="HBASE" />
+					<p:menuitem value="Summary" />
+				</p:breadCrumb>
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-2">Component</div>
+					<div class="ui-g-12 ui-md-10 ui-g-nopad">
+						<div class="ui-g-12 ui-g-nopad">
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:commandButton value="Started" id="withIcon1"
+											icon="ui-icon-circle-check" />
+									</div>
+									<div>
+										<p:outputLabel value="ACTIVE HBASE MASTER"></p:outputLabel>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="3/3 Live"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="REGIONSERVERS"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="0/1 Live"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="PHOENIX QUERY SERVER"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="0"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="REGION IN TRANSTITION"></p:outputLabel>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-2">Service Metrics</div>
+					<div class="ui-g-12 ui-md-10 ui-g-nopad">
+						<div class="ui-g-12 ui-g-nopad">
+
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="21M 16S" />
+									</div>
+									<div>
+										<p:outputLabel value="MASTER STARTED"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="21M 48S" />
+									</div>
+									<div>
+										<p:outputLabel value="MASTER ACTIVATED"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="0.33 regions per RegionServer" />
+									</div>
+									<div>
+										<p:outputLabel value="AVERAGE LOAD"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="78%" />
+									</div>
+									<div>
+										<p:outputLabel value="MASTER HEAP"></p:outputLabel>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</p:tab>
+			<p:tab title="HEATMAPS">
+				<p:breadCrumb style="font-size:10pt">
+					<p:menuitem value="Breadcrumb" />
+					<p:menuitem value="Services" />
+					<p:menuitem value="HBASE" />
+					<p:menuitem value="Heatmaps" />
+				</p:breadCrumb>
+
+				<h:form>
+
+					<!-- <p:commandButton value="Started" id="withIcon" icon="ui-icon-circle-check" style="color:White;background:Red;"/>
+    			<p:commandButton value="Started" id="withIcon" icon="ui-icon-circle-check" style="background:Red;"/>
+    			<p:commandButton id="withIcon" icon="ui-icon-circle-check" style="color:White;background:Red;"/> -->
+
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-6">
+							<div>
+								<p:growl id="messages" />
+								<h:panelGrid columns="2" style="margin-bottom:10px"
+									cellpadding="5">
+									<p:splitButton id="basic" value="SELECT METRIC"
+										actionListener="#{buttonView.save}" update="messages">
+										<p:menuitem value="Update"
+											actionListener="#{buttonView.update}" update="messages"
+											icon="ui-icon-arrowrefresh-1-w" />
+										<p:menuitem value="Delete"
+											actionListener="#{buttonView.delete}" ajax="false"
+											icon="ui-icon-close" />
+										<p:separator />
+										<p:menuitem value="Homepage" url="http://www.primefaces.org"
+											icon="ui-icon-extlink" />
+									</p:splitButton>
+								</h:panelGrid>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Lightgreen;" />
+								<p:outputLabel value="0MB - 205MB"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Green;" />
+								<p:outputLabel value="205MB - 410MB"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Yellow;" />
+								<p:outputLabel value="410MB - 614MB"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Orange;" />
+								<p:outputLabel value="614MB - 819MB"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Red;" />
+								<p:outputLabel value="819MB - 1024MB"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Grey;" />
+								<p:outputLabel value="Invalid data"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Black;" />
+								<p:outputLabel value="Data Not Available"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Lightgrey;" />
+								<p:outputLabel value="Not Applicable"></p:outputLabel>
+							</div>
+						</div>
+						<div class="ui-g-12 ui-md-6">
+							<div>
+								<h2>HBase Compaction Queue Size</h2>
+							</div>
+							<div>
+								<p:outputLabel value="/default-rack"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton
+									value="------------------------------------------------------------------"
+									style="background:Green;" />
+							</div>
+						</div>
+					</div>
+					<div>
+						<p:outputLabel value="Maximum:"></p:outputLabel>
+					</div>
+					<div>
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-4">
+								<div class="ui-inputgroup">
+									<p:inputText placeholder="1024" />
+									<p:commandButton value="MB" styleClass="white-button" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</h:form>
+			</p:tab>
+			<p:tab title="CONFIGS">
+				<p:breadCrumb style="font-size:10pt">
+					<p:menuitem value="Breadcrumb" />
+					<p:menuitem value="Services" />
+					<p:menuitem value="HBASE" />
+					<p:menuitem value="Configs" />
+				</p:breadCrumb>
+				<h:form>
+					<p:growl id="messages" />
+					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+						<p:splitButton id="basic" value="Version 1"
+							actionListener="#{buttonView.save}" update="messages">
+							<p:menuitem value="Update" actionListener="#{buttonView.update}"
+								update="messages" icon="ui-icon-arrowrefresh-1-w" />
+							<p:menuitem value="Delete" actionListener="#{buttonView.delete}"
+								ajax="false" icon="ui-icon-close" />
+							<p:separator />
+							<p:menuitem value="Homepage" url="http://www.primefaces.org"
+								icon="ui-icon-extlink" />
+						</p:splitButton>
+					</h:panelGrid>
+
+					<p:tabView>
+						<p:tab title="SETTINGS">
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-6">
+									<h2>NameNode</h2>
+									<div>
+										<p:outputLabel value="NameNode directories"></p:outputLabel>
+									</div>
+
+									<h:form>
+										<p:inputTextarea rows="5" cols="30" maxlength="10"
+											value="/hadoop/hdfs/namenode" autoResize="false" />
+										<h:outputText id="display" />
+									</h:form>
+
+									<div>
+										<p:outputLabel value="NameNode Java heap size"></p:outputLabel>
+									</div>
+									<h:form>
+										<h:panelGrid columns="1" style="margin-bottom: 10px">
+											<h:outputText id="output" value="GB#{sliderView.number2}" />
+											<h:inputHidden id="txt2" value="#{sliderView.number4}" />
+											<p:slider for="txt2" display="output" style="width: 200px"
+												displayTemplate="{value}GB" />
+										</h:panelGrid>
+									</h:form>
+
+									<div>
+										<p:outputLabel value="NameNode server threads"></p:outputLabel>
+									</div>
+									<h:form>
+										<h:panelGrid columns="1" style="margin-bottom: 10px">
+											<h:outputText id="output3" value="GB#{sliderView.number6}" />
+											<h:inputHidden id="txt3" value="#{sliderView.number7}" />
+											<p:slider for="txt3" display="output3" style="width: 200px"
+												displayTemplate="{value}GB" />
+										</h:panelGrid>
+									</h:form>
+
+									<div>
+										<p:outputLabel value="Minimumm replicated blocks %"></p:outputLabel>
+									</div>
+									<h:form>
+										<h:panelGrid columns="1" style="margin-bottom: 10px">
+											<h:outputText id="output4" value="GB#{sliderView.number8}" />
+											<h:inputHidden id="txt4" value="#{sliderView.number9}" />
+											<p:slider for="txt4" display="output4" style="width: 200px"
+												displayTemplate="{value}GB" />
+										</h:panelGrid>
+									</h:form>
+								</div>
+
+								<div class="ui-g-12 ui-md-6">
+									<h2>DataNode</h2>
+									<div>
+										<p:outputLabel value="DataNode Directories"></p:outputLabel>
+									</div>
+
+									<h:form>
+										<p:inputTextarea rows="5" cols="30" maxlength="10"
+											value="/hadoop/hdfs/data" autoResize="false" />
+										<h:outputText id="display" />
+									</h:form>
+
+									<div>
+										<p:outputLabel value="DataNbode failed disk tolerance"></p:outputLabel>
+									</div>
+									<h:form>
+										<h:panelGrid columns="1" style="margin-bottom: 10px">
+											<h:outputText id="output5" value="GB#{sliderView.number10}" />
+											<h:inputHidden id="txt5" value="#{sliderView.number11}" />
+											<p:slider for="txt5" display="output5" style="width: 200px"
+												displayTemplate="{value}GB" />
+										</h:panelGrid>
+									</h:form>
+
+									<div>
+										<p:outputLabel value="DataNbode failed disk tolerance"></p:outputLabel>
+									</div>
+									<h:form>
+										<h:panelGrid columns="1" style="margin-bottom: 10px">
+											<h:outputText id="output6" value="GB#{sliderView.number12}" />
+											<h:inputHidden id="txt6" value="#{sliderView.number13}" />
+											<p:slider for="txt6" display="output6" style="width: 200px"
+												displayTemplate="{value}GB" />
+										</h:panelGrid>
+									</h:form>
+
+									<div>
+										<p:outputLabel value="DataNbode failed disk tolerance"></p:outputLabel>
+									</div>
+									<h:form>
+										<h:panelGrid columns="1" style="margin-bottom: 10px">
+											<h:outputText id="output7" value="GB#{sliderView.number14}" />
+											<h:inputHidden id="txt7" value="#{sliderView.number15}" />
+											<p:slider for="txt7" display="output7" style="width: 200px"
+												displayTemplate="{value}GB" />
+										</h:panelGrid>
+									</h:form>
+								</div>
+							</div>
+						</p:tab>
+
+						<p:tab title="ADVANCED">
+							<h2>NameNode</h2>
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-6">
+									<div>
+										<p:outputLabel value="NameNode host"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="NameNode new generation size"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="NameNode maximum new generation size"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="NameNode permanent generation size"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel
+											value="NameNode maximum permanent generation size"></p:outputLabel>
+									</div>
+									<BR />
+									<h2>DataNode</h2>
+									<div>
+										<p:outputLabel value="DataNode hosts"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="DataNode directories permission"></p:outputLabel>
+									</div>
+									<BR />
+									<h2>General</h2>
+									<div>
+										<p:outputLabel value="WebHBASE Enabled"></p:outputLabel>
+									</div>
+									<BR />
+									<div>
+										<p:outputLabel value="Hadoop maximum java heap size" />
+									</div>
+									<BR />
+									<div>
+										<p:outputLabel value="Access time precision" />
+									</div>
+									<BR />
+									<div>
+										<p:outputLabel value="HBASE maximum checkpoint delay" />
+									</div>
+									<BR />
+									<div>
+										<p:outputLabel value="Reserved space for HBASE" />
+									</div>
+									<BR />
+									<div>
+										<p:outputLabel value="Block replication" />
+									</div>
+									<BR />
+									<h2>NFS Gateway</h2>
+									<div>
+										<p:outputLabel value="NFSGateway host" />
+									</div>
+									<div>
+										<p:outputLabel value="NFSGateway maximum Java heap size" />
+									</div>
+									<div>
+										<p:outputLabel value="NFSGateway dump directory" />
+									</div>
+									<div>
+										<p:outputLabel value="Allowed hosts" />
+									</div>
+								</div>
+
+								<div class="ui-g-12 ui-md-6">
+									<div>
+										<p:outputLabel value="yava-v3-dev.labs247.com"></p:outputLabel>
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="128" />
+										<p:commandButton value="MB" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="128" />
+										<p:commandButton value="MB" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="128" />
+										<p:commandButton value="MB" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="128" />
+										<p:commandButton value="MB" styleClass="white-button" />
+									</div>
+									<BR /> <BR />
+									<div>
+										<p:outputLabel value="yava3-01.labs247.com" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="750" />
+									</div>
+									<BR /> <BR /> <BR /> <BR /> <BR />
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="None" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="1024" />
+										<p:commandButton value="MB" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="0" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="21600" />
+										<p:commandButton value="seconds" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="600000" />
+										<p:commandButton value="seconds" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="3" />
+									</div>
+									<BR /> <BR /> <BR /> <BR /> <BR /> <BR />
+									<div>
+										<p:outputLabel value="No host assigned" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="1024" />
+										<p:commandButton value="MB" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="/tmp/.hdfs.nfs" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="*rw" />
+									</div>
+								</div>
+							</div>
+							<p:accordionPanel>
+								<p:tab title="hbase-site">
+
+									<h:panelGrid columns="2" cellpadding="5">
+										<p:outputLabel value="Type: " />
+										<p:outputLabel value="#{hbaseView.type}"></p:outputLabel>
+
+										<p:outputLabel value="clusterName: " />
+										<p:outputLabel value="#{hbaseView.clusterName}"></p:outputLabel>
+
+										<p:outputLabel value="stackId: " />
+										<p:outputLabel value="#{hbaseView.stackId}"></p:outputLabel>
+
+										<p:outputLabel value="version: " />
+										<p:outputLabel value="#{hbaseView.version}"></p:outputLabel>
+
+										<p:outputLabel value="Tag: " />
+										<p:outputLabel value="#{hbaseView.tag}"></p:outputLabel>
+
+									</h:panelGrid>
+
+									<p:dataTable var="productEntry" value="#{hbaseView.properties}">
+										<p:column>
+											<h:outputText value="#{productEntry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{productEntry.value}" />
+										</p:column>
+									</p:dataTable>
+
+
+								</p:tab>
+
+
+
+								<p:tab title="hbase-env">
+
+
+									<p:dataTable var="entry"
+										value="#{hbaseView.getProperties('hbase-env')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+
+								</p:tab>
+
+								<p:tab title="hbase-policy">
+									<p:dataTable var="entry"
+										value="#{hbaseView.getProperties('hbase-policy')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+
+								</p:tab>
+
+								<p:tab title="hbase-log4j">
+									<p:dataTable var="entry"
+										value="#{hbaseView.getProperties('hbase-log4j')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+
+								<p:tab title="hbase-atlas-application-properties">
+									<p:dataTable var="entry"
+										value="#{hbaseView.getProperties('hbase-atlas-application-properties')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+
+								<p:tab title="ranger-hbase-security">
+
+									<p:dataTable var="entry"
+										value="#{hbaseView.getProperties('ranger-hbase-security')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+
+								</p:tab>
+								<p:tab title="ranger-hbase-audit">
+									<p:dataTable var="entry"
+										value="#{hbaseView.getProperties('ranger-hbase-audit')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+
+								<p:tab title="ranger-hbase-security">
+									<p:dataTable var="entry"
+										value="#{hbaseView.getProperties('ranger-hbase-security')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+								<p:tab title="ranger-hbase-security">
+									<p:dataTable var="entry"
+										value="#{hbaseView.getParameters('ranger-hbase-security')}">
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+
+
+								<p:tab title="ranger-hbase-policymgr-ssl">
+									<p:dataTable var="entry"
+										value="#{hbaseView.getProperties('ranger-hbase-policymgr-ssl')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" id='key' />
+										</p:column>
+										<p:column>
+											<h:inputText value="#{entry.value}" id='value' />
+										</p:column>
+										<!-- <p:column>
+											<p:button outcome="#{hbaseView.setProperties(#{entry.value})}" value="Submit"
+												icon="pi pi-star" style="margin-right:20px;">
+												<f:param name="bebas" value="10" />
+											</p:button>
+										</p:column> -->
+									</p:dataTable>
+								</p:tab>
+							</p:accordionPanel>
+						</p:tab>
+					</p:tabView>
+				</h:form>
+			</p:tab>
+			<p:tab title="METRICS">
+
+
+				<h:panelGrid columns="2" cellpadding="0" value="test"
+					style="width:100%">
+					<p:breadCrumb style="font-size:10pt;float:left;width:60%">
+						<p:menuitem value="Breadcrumb" />
+						<p:menuitem value="Services" />
+						<p:menuitem value="HBASE" />
+						<p:menuitem value="Metrics" />
+					</p:breadCrumb>
+
+					<h:panelGrid columns="2" cellpadding="0" value="test"
+						style="font-size:10pt;width:40%;float:right">
+						<p:button value="Action" icon="fa fa-star"
+							style="font-size:10pt;float:right">
+							<f:param name="Metric" />
+						</p:button>
+						<p:button value="Last" icon="fa fa-dropdown" style="float:right">
+							<f:param name="Last" />
+						</p:button>
+					</h:panelGrid>
+
+				</h:panelGrid>
+
+
+
+				<div style="height: 500px; width: 100%">
+					<h:form>
+						<p:growl id="msgs" showDetail="true" />
+
+						<p:dashboard id="board" model="#{hbaseMetrics.model}">
+							<p:ajax event="reorder" listener="#{hbaseMetrics.handleReorder}"
+								update="msgs" />
+
+							<p:panel id="memoryUsage" header="Memory Usage"
+								style="height:150px;margin:10px;width:230px">
+								<p:chart id="pie" type="pie" model="#{chartView.pieModel1}"
+									style="height:120px" />
+								<p:poll interval="1" update="pie" />
+							</p:panel>
+
+							<p:panel id="clusterLoad" header="Cluster Load"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Finance Content" />
+							</p:panel>
+
+							<p:panel id="networkUsage" header="Network Usage"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Lifestyle Content" />
+							</p:panel>
+
+							<p:panel id="HbaseDiskUsage" header="HBASE Disk Usage"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Weather Content" />
+							</p:panel>
+
+							<p:panel id="nameNodeHeap" header="NameNode Heap"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Politics Content" />
+							</p:panel>
+
+							<p:panel id="nameNodeCPUWIO" header="NameNode CPU WIO"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Politics Content" />
+							</p:panel>
+
+							<p:panel id="CPUUsage" header="CPU Usage"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Politics Content" />
+							</p:panel>
+
+							<p:panel id="resourceManageHeap" header="Resource Manage Heap"
+								style="height:150px;margin:10px;width:230px">
+								<h:outputText value="Politics Content" />
+							</p:panel>
+
+						</p:dashboard>
+
+						<div style="clear: both" />
+					</h:form>
+				</div>
+
+			</p:tab>
+		</p:tabView>
+	</h:form>
+
+</ui:composition>
