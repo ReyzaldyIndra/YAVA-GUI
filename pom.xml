@@ -6,7 +6,7 @@
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 
-	<properties>  <!-- 2018.5.0 conflict di theme primeface -->
+	<properties>  <!-- migrate ke thorntail ver 2.2.1 -->
 		<version.wildfly.swarm>2.2.1.Final</version.wildfly.swarm>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -37,7 +37,7 @@
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 
-			<!-- swarm plugin added -->
+			<!-- thorntail-maven plugin added -->
 			<plugin>
 				<groupId>io.thorntail</groupId>
 				<artifactId>thorntail-maven-plugin</artifactId>
@@ -92,7 +92,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- WildFly Swarm Fractions -->
+		<!-- Thorntail Fractions -->
 		<dependency>
 			<groupId>io.thorntail</groupId>
 			<artifactId>cdi</artifactId>
