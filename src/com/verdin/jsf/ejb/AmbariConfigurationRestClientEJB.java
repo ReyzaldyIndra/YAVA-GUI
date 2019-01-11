@@ -112,6 +112,7 @@ public class AmbariConfigurationRestClientEJB {
 	         	    JsonObject jsonObject = jsonTree.getAsJsonObject();
 
 	         	    JsonElement href = jsonObject.get("href");
+	         	   
 	         	    
 	         	    //System.out.println(href.toString());
 	         	    logger.info(href.toString());
