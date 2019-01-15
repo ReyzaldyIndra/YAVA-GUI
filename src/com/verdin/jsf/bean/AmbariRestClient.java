@@ -22,7 +22,7 @@ public class AmbariRestClient {
 	String DEFAULT_USER = "admin";
 	String DEFAULT_PASS = "admin";
 	String DEFAUT_SERVICE =  "MAPREDUCE2";
-	String CLUSTER = "YAVA30";// "H2SO4";
+	String CLUSTER = "C10H16";// "H2SO4";
 	String HOSTNAME = "192.168.3.132";//192.168.3.132  192.168.3.221 192.168.3.164
 
 	
