@@ -5,7 +5,6 @@
 	<artifactId>ErsteJSF</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
-	
 
 	<properties>  <!-- 2018.5.0 conflict di theme primeface -->
 		<version.wildfly.swarm>2.2.1.Final</version.wildfly.swarm>
@@ -31,11 +30,14 @@
   </repositories>
 
 
+
+
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 
-			<!-- thorntail plugin added -->
+			<!-- swarm plugin added -->
 			<plugin>
 				<groupId>io.thorntail</groupId>
 				<artifactId>thorntail-maven-plugin</artifactId>
@@ -56,7 +58,6 @@
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
 				</configuration>
-				
 			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -65,12 +66,10 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
-			
-
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -80,18 +79,10 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
-			
-			<!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase-client -->
-		
+		</dependencies>
+	</dependencyManagement>
 
-<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-common -->
-<dependency>
-    <groupId>org.apache.hadoop</groupId>
-    <artifactId>hadoop-common</artifactId>
-    <version>3.1.1</version>
-</dependency>
-
-		
+	<dependencies>
 
 		<!-- Java EE 7 dependency -->
 		<dependency>
@@ -100,12 +91,6 @@
 			<version>7.0</version>
 			<scope>provided</scope>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/javax.faces/jsf-api -->
-
-
-<!-- https://mvnrepository.com/artifact/javax.faces/javax.faces-api -->
-
 
 		<!-- WildFly Swarm Fractions -->
 		<dependency>
@@ -142,6 +127,13 @@
 			<groupId>io.thorntail</groupId>
 			<artifactId>jpa</artifactId>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase-client -->
+<dependency>
+    <groupId>org.apache.hbase</groupId>
+    <artifactId>hbase-client</artifactId>
+    <version>2.1.2</version>
+</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
 		<dependency>
@@ -149,8 +141,6 @@
 			<artifactId>primefaces</artifactId>
 			<version>6.2</version>
 		</dependency>
-		
-
 		
 		<dependency>
     		<groupId>org.apache.httpcomponents</groupId>
@@ -162,7 +152,7 @@
 		<dependency>
 			<groupId>org.primefaces.extensions</groupId>
 			<artifactId>primefaces-extensions</artifactId>
-			<version>6.2.10</version>
+			<version>6.2.8</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.primefaces.themes/all-themes -->
@@ -182,6 +172,8 @@
            <version>1.0.8</version>
         </dependency>
 
+		
+		
 
 		<!-- https://mvnrepository.com/artifact/org.primefaces.extensions/resources-ckeditor -->
 		<dependency>
@@ -190,13 +182,6 @@
 			<version>6.2.9</version>
 			<scope>runtime</scope>
 		</dependency>
-		
-		<dependency>
-   		 <groupId>javax.enterprise</groupId>
-    <artifactId>cdi-api</artifactId>
-    <version>2.0</version>
-    <scope>provided</scope>
-</dependency>
 
 
 		<!-- JSF - -> <dependency> <groupId>com.sun.faces</groupId> <artifactId>jsf-api</artifactId> 
@@ -222,55 +207,7 @@
 			<artifactId>datafactory</artifactId>
 			<version>0.8</version>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging -->
 
-		
-		<!-- https://mvnrepository.com/artifact/javax.inject/javax.inject -->
-
-		
-
-</dependencies>
-	
-	</dependencyManagement>
-	<dependencies>
-		<dependency>
-			<groupId>org.jboss.logging</groupId>
-			<artifactId>jboss-logging</artifactId>
-			<version>3.3.2.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.hbase</groupId>
-			<artifactId>hbase-client</artifactId>
-			<version>2.1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.faces</groupId>
-			<artifactId>jsf-api</artifactId>
-			<version>2.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.faces</groupId>
-			<artifactId>javax.faces-api</artifactId>
-			<version>2.3</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<version>2.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.primefaces.extensions</groupId>
-			<artifactId>primefaces-extensions</artifactId>
-			<version>6.2.10</version>
-		</dependency>
 	</dependencies>
+
 </project>

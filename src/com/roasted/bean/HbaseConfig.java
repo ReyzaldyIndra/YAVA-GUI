@@ -1,4 +1,4 @@
-package com.jsf.bean;
+package com.roasted.bean;
 
 import java.io.Serializable;
 import java.io.File;
@@ -45,7 +45,7 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 
 
-@Named
+@Named("hbase_config")
 @SessionScoped
 public class HbaseConfig implements Serializable{
 	public void addResource(Configuration conf) throws IOException {
@@ -77,5 +77,6 @@ public class HbaseConfig implements Serializable{
 	
 	}
 }
+
 
 
