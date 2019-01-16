@@ -22,5 +22,14 @@
 	<classpathentry exported="true" kind="lib" path="/home/reyzaldy/eclipse-workspace/httpclient-4.5.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="/home/reyzaldy/eclipse-workspace/httpclient-osgi-4.5.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="/home/reyzaldy/eclipse-workspace/primefaces-6.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/reyzaldy/hbase-client.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/reyzaldy/hbase-metrics.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/reyzaldy/hbase-replication.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/reyzaldy/hbase-hadoop-compat.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/reyzaldy/hbase-http.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/reyzaldy/hbase-zookeeper.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/reyzaldy/hbase-common.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/reyzaldy/hbase-protocol.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/reyzaldy/hbase-server.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -31,6 +31,7 @@ import org.primefaces.extensions.event.CloseEvent;
 import org.primefaces.extensions.event.OpenEvent;
 import org.primefaces.extensions.event.ResizeEvent;
 import org.primefaces.extensions.model.layout.LayoutOptions;
+
 import org.jboss.logging.Logger;
 
 /**

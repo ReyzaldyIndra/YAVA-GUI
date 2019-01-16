@@ -78,6 +78,7 @@ public class AmbariConfigurationRestClientEJB {
 	    	CredentialsProvider credsProvider = new BasicCredentialsProvider();
 	    	credsProvider.setCredentials(AuthScope.ANY, 
 	    	  new UsernamePasswordCredentials(DEFAULT_USER, DEFAULT_PASS));
+	    	
 
 	    	AuthCache authCache = new BasicAuthCache();
 	    	authCache.put(targetHost, new BasicScheme());

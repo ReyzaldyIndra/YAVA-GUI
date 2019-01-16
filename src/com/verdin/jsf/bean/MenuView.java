@@ -1,6 +1,8 @@
 package com.verdin.jsf.bean;
 
-import javax.annotation.ManagedBean;
+
+import javax.inject.Named;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -10,7 +12,7 @@ import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
 
-@ManagedBean
+@Named
 public class MenuView {
  
     private MenuModel model;

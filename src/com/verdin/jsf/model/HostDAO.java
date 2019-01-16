@@ -1,6 +1,6 @@
 package com.verdin.jsf.model;
 
-//import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ApplicationScoped;
 //import javax.faces.bean.ManagedBean;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -16,7 +16,7 @@ import org.jboss.logging.Logger;
 import com.verdin.jsf.model.Host;
 
 
-import javax.enterprise.context.ApplicationScoped;
+//import javax.enterprise.context.ApplicationScoped;
 
 
 @ApplicationScoped
