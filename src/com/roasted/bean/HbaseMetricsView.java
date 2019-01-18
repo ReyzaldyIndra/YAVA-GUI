@@ -39,6 +39,7 @@ public class HbaseMetricsView implements Serializable{
 	    }
 	       
 	 
+	 
 	    public void setService(HbaseMetricsConnect service) {
 	        this.service = service;
 	    }

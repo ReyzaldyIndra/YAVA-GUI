@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
+
 //import java.util.List;
 
 import org.jboss.logging.Logger;

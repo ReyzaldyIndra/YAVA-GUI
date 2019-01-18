@@ -11,6 +11,7 @@ public class HbaseMetricsData implements Serializable{
 		
 		}
 	
+	
 	String app_id;
 	String container_id;
 	String start_time;
