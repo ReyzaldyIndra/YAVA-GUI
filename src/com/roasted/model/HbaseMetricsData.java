@@ -2,12 +2,12 @@ package com.roasted.model;
 
 import java.io.Serializable;
 
-public class HbaseMetrics implements Serializable{
+public class HbaseMetricsData implements Serializable{
 	static final long serialVersionUID = 12345678912l;
 	
 	
 	//SQL Object pada table "CONTAINER_METRICS"
-	public HbaseMetrics () {
+	public HbaseMetricsData () {
 		
 		}
 	

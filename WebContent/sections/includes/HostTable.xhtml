@@ -25,26 +25,26 @@
 			
 		<br style="height:50px"/>
 			
-			<p:dataTable var="host" value="#{hostView.hosts}">
+			<p:dataTable var="hbase_metrics" value="#{container_metrics_view.o}">
 			
-			    <p:column headerText="IP">
-			        <h:outputText value="#{host.ipv4}" />
+			    <p:column headerText="APP_ID">
+			        <h:outputText value="#{hbase_metrics.app_id}" />
 			    </p:column>
 			 
-			    <p:column headerText="Hostname">
-			        <h:outputText value="#{host.host_name}" />
+			    <p:column headerText="CONTAINER_ID">
+			        <h:outputText value="#{hbase_metrics.container_id}" />
 			    </p:column>
 			 
-			    <p:column headerText="CPU">
-			        <h:outputText value="#{host.cpu_info}" />
+			    <p:column headerText="START_TIME">
+			        <h:outputText value="#{hbase_metrics.start_time}" />
 			    </p:column>
 			 
-			    <p:column headerText="Memory">
-			        <h:outputText value="#{host.total_mem}" />
+			    <p:column headerText="FINISH_TIME">
+			        <h:outputText value="#{hbase_metrics.finish_time}" />
 			    </p:column>
 			    
-			    <p:column headerText="Rack">
-			        <h:outputText value="#{host.rack_info}" />
+			    <p:column headerText="DURATION">
+			        <h:outputText value="#{hbase_metrics.duration}" />
 			    </p:column>
 			</p:dataTable>
 </h:form>

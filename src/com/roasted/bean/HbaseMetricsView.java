@@ -4,37 +4,55 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.ConversationScoped;
+import javax.inject.Named;
+import javax.inject.Inject;
 
 import com.roasted.network.HbaseMetricsConnect;
-import com.roasted.model.HbaseMetrics;
+import com.roasted.model.HbaseMetricsData;
+import java.io.Serializable;
 
 @Named("container_metrics_view")
-@ApplicationScoped
+@ConversationScoped
 
 public class HbaseMetricsView implements Serializable{
 	//diganti sesuai UID table
-	static final long serialVersionUID = 12345678913l;
+//	static final long serialVersionUID = 12345678913l;
 	
-	private List<HbaseMetrics> hbase_metrics;
+	private List<HbaseMetricsData> o;
 	@Inject
 	
 	private HbaseMetricsConnect service;
 	
+	public List<HbaseMetricsData> getMetrics(){
+        return o;
+    }
+	
+	
 	 @PostConstruct
 	    public void init() {
 	    	try {
-	    		hbase_metrics = service.getMetrics();
+	    		o = service.getMetrics();
 	    	} catch (Exception e) {
 	    		e.printStackTrace();
 	    	}
 	    }
-	     
-	    public List<HbaseMetrics> getMetrics(){
-	        return hbase_metrics;
-	    }
+	       
 	 
 	    public void setService(HbaseMetricsConnect service) {
 	        this.service = service;
 	    }
+
+
+		public List<HbaseMetricsData> getO() {
+			return o;
+		}
+
+
+		public void setO(List<HbaseMetricsData> o) {
+			this.o = o;
+		}
+	    
+	    
 
 }
