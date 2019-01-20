@@ -1,98 +1,95 @@
 package com.roasted.network;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
+import java.util.Set;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.hbase.Cell;
+import org.apache.hadoop.hbase.CellUtil;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.HColumnDescriptor;
+import org.apache.hadoop.hbase.HTableDescriptor;
+import org.apache.hadoop.hbase.TableName;
+import org.apache.hadoop.hbase.client.Admin;
+import org.apache.hadoop.hbase.client.ClusterConnection;
+import org.apache.hadoop.hbase.client.Connection;
+import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+import org.apache.hadoop.hbase.client.Put;
+import org.apache.hadoop.hbase.client.Result;
+import org.apache.hadoop.hbase.client.ResultScanner;
+import org.apache.hadoop.hbase.client.Scan;
+import org.apache.hadoop.hbase.client.Table;
+import org.apache.hadoop.hbase.filter.CompareFilter.CompareOp;
+import org.apache.hadoop.hbase.filter.FilterList;
+import org.apache.hadoop.hbase.filter.SingleColumnValueFilter;
+import org.apache.hadoop.hbase.util.Bytes;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
+//untuk setup koneksi dengan query Hbase
 
 
-//import java.util.List;
+public class KueriHBase {
 
-import org.jboss.logging.Logger;
-
-import com.roasted.model.HbaseMetricsData;
-import java.util.List;
-import java.util.ArrayList;
-
-//@Named("hbase_connect")
-@ApplicationScoped
-public class HbaseMetricsConnect{
 	
-	static Logger logger = Logger.getLogger(HbaseMetricsConnect.class);
 	
-		static final String url = "jdbc:phoenix:192.168.3.132:61181:/ams-hbase-unsecure";
-//		static final String user = "root";
-//		static final String pass = "geheim247";
+	
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+
 		
-		public List<HbaseMetricsData> getMetrics() throws Exception{
-		
-		List<HbaseMetricsData> _hbase_metrics = new ArrayList<HbaseMetricsData>();
-		
-		Connection con = null;
-		Statement st = null;
-		ResultSet rs = null;
-		try {
-			   Class.forName("org.apache.phoenix.jdbc.PhoenixDriver");
-			   con = DriverManager.getConnection(url);
-			   
-			   st = con.createStatement();
-			   String sql;
-			   sql = "select * from CONTAINER_METRICS";
-			   rs = st.executeQuery(sql);
-			   
-			   while(rs.next()) {
-//				   String data = rs.getString(1);
-//				   System.out.println(data);
-				   
-				   HbaseMetricsData hm = new HbaseMetricsData();
-				   
-				   hm.setApp_id(rs.getString("app_id"));
-				   hm.setContainer_id(rs.getString("container_id"));
-				   hm.setStart_time(rs.getString("start_time"));
-				   hm.setFinish_time(rs.getString("finish_time"));
-				   hm.setDuration(rs.getInt("duration"));
-				   
-				  _hbase_metrics.add(hm);
-//				   String app_id = rs.getString("app_id");
-//					String container_id = rs.getString("container_id");
-//					String start_time = rs.getString("start_time");
-//					String finish_time = rs.getString("finish_time");
-//					int duration = rs.getInt("duration");
-				  
-					
-//					System.out.println(app_id);
-//					System.out.println(container_id);
-//					System.out.println(start_time);
-//					System.out.println(finish_time);
-//					System.out.println(duration);
-					
-				   
-			   }
-//			   rs.close();
-//			   st.close();
-//			   con.close();	   
-			}
-		catch(SQLException se) {
-			logger.error(se.getMessage());
-			se.printStackTrace();
-		}
-		catch (Exception e) {
-			logger.error(e.getMessage());
-			e.printStackTrace();
-		}
-		
-		finally {
-			con.close();
-		}
-		
-		return _hbase_metrics;
+		    Configuration conf = new Configuration(true);
+		   
+		    conf.addResource(new Path("/app/etc/hbase/ams-hbase.xml"));
+		    conf.addResource(new Path("/app/etc/hbase/hbase-site.xml"));
+		    
+		    Connection conn = ConnectionFactory.createConnection(conf);
+		    
+		    System.out.println("got conn ...");
+		    
+		    TableName tableName = TableName.valueOf("METRIC_AGGREGATE_DAILY_UUID");
+		    
+		    Table table = conn.getTable(tableName);
+		    
+		    Scan scan = new Scan();
+		    
+		    FilterList list = new FilterList(FilterList.Operator.MUST_PASS_ALL);
+		    
+		    
+		    System.out.println("got conn ... 2");
+		    
+		  //  SingleColumnValueFilter cvFilter1 = new SingleColumnValueFilter("COLFAM1", 
+		  //  		Bytes.toBytes("COL1"), CompareOp.EQUAL, Bytes.toBytes("YES"));
+		    		
+		    	// new SingleColumnValueFilter("COLFAM1", Bytes.toBytes("COL1"), 
+		    	// CompareOp.EQUAL, Bytes.toBytes("YES"));
+		    
+		 //   cvFilter2.setFilterIfMissing(true);
+		    
+		  //  list.addFilter(cvFilter2);
+		    
+		  //  scan.addColumn("COLFAM1", Bytes.toBytes("COL1"));
+		 //   scan.setFilter(list);
+		    
+		    ResultScanner rs = table.getScanner(scan);
+		    
+		    for (Result result : rs) {
+		    	
+		        for (Cell cell : result.listCells()) {
+		        	
+		            String qualifier = Bytes.toString(CellUtil.cloneQualifier(cell));
+		            
+		            String value = Bytes.toString(CellUtil.cloneValue(cell));
+		            
+		            System.out.printf("  Qualifier: [%s] : Value: [%s] ", qualifier, value);
+		        }
+		    }
 		
 	}
+	
+	
+
 }
 
 
