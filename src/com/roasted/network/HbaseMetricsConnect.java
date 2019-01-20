@@ -63,6 +63,7 @@ public class HbaseMetricsConnect{
 //					String start_time = rs.getString("start_time");
 //					String finish_time = rs.getString("finish_time");
 //					int duration = rs.getInt("duration");
+				  
 					
 //					System.out.println(app_id);
 //					System.out.println(container_id);
