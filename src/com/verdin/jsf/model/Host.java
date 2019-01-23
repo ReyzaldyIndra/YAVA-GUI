@@ -2,9 +2,6 @@ package com.verdin.jsf.model;
 
 import java.io.Serializable;
 
-
-
-
 public class Host implements Serializable {
 	static final long serialVersionUID = 12345678912l;
 /* 

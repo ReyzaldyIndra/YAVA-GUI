@@ -5,10 +5,12 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
         
-        
-<h:form style="width:100%;">
+
+<ui:debug />       
+<h:form id = "form" style="width:100%;">
 	<p:growl id="message"></p:growl>
-			
+	
+		
 		<h:panelGrid columns="2" cellpadding="0" value="test" style="width:100%">
 			<p:outputLabel value="Hosts" style="float:left;width:80%"></p:outputLabel>
 			<h:panelGrid columns="2" cellpadding="0" value="test" style="width:20%;float:right">
@@ -23,30 +25,28 @@
 		</h:panelGrid>
 			
 			
-			
 		<br style="height:50px"/>
-			
-			<p:dataTable var="hbase_metrics" value="#{container_metrics_view.o}">
-			
+		<p:dataTable id = dataTable value = "#{metrics.scanner}" var="data" paginator="true" rows="10" lazy="true">
+		
+		<!-- <h:outputText var="data"value="#{ContainerMetrics._container_metrics}"></h:outputText>  -->
+		
 			    <p:column headerText="APP_ID">
-			        <h:outputText value="#{hbase_metrics.app_id}" />
+			        <h:outputText value="#{data.app_id}" />
 			    </p:column>
 			 
 			    <p:column headerText="CONTAINER_ID">
-			        <h:outputText value="#{hbase_metrics.container_id}" />
+			        <h:outputText value="#{data.family}" />
 			    </p:column>
 			 
-			    <p:column headerText="START_TIME">
-			        <h:outputText value="#{hbase_metrics.start_time}" />
+			    <p:column headerText="HOSTNAME">
+			        <h:outputText value="#{data.qualifier}" />
 			    </p:column>
 			 
-			    <p:column headerText="FINISH_TIME">
-			        <h:outputText value="#{hbase_metrics.finish_time}" />
+			    <p:column headerText="DURATION">
+			        <h:outputText value="#{data.timeStamp}" />
 			    </p:column>
 			    
-			    <p:column headerText="DURATION">
-			        <h:outputText value="#{hbase_metrics.duration}" />
-			    </p:column>
 			</p:dataTable>
+			 
 </h:form>
 </ui:composition>
