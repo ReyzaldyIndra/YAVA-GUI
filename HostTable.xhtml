@@ -1,0 +1,51 @@
+<ui:composition
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+        
+
+<ui:debug />       
+<h:form id = "form" style="width:100%;">
+	<p:growl id="message"></p:growl>
+	
+		
+		<h:panelGrid columns="2" cellpadding="0" value="test" style="width:100%">
+			<p:outputLabel value="Ambari Metrics" style="float:left;width:80%"></p:outputLabel>
+			<h:panelGrid columns="2" cellpadding="0" value="test" style="width:20%;float:right">
+				<p:button value="Filter" icon="fa fa-filter" style="float:right;margin:0;padding:0">
+	    			<f:param name="filter" />
+				</p:button>
+				<p:button value="Action" icon="fa fa-star" style="float:right;margin-left:0;padding:0">
+	    			<f:param name="action" />
+				</p:button>
+			</h:panelGrid>
+			
+		</h:panelGrid>
+			
+		<br style="height:50px"/>
+		<p:dataTable value = "#{cmview.containermetrics}" var="data">
+		
+		<!-- <h:outputText var="data"value="#{ContainerMetrics._container_metrics}"></h:outputText>  -->
+		
+			    <p:column headerText="APP_ID">
+			        <h:outputText value="#{data.app_id}" />
+			    </p:column>
+			 
+			    <p:column headerText="CONTAINER_ID">
+			        <h:outputText value="#{data.container_id}" />
+			    </p:column>
+			 
+			    <p:column headerText="START_TIME">
+			        <h:outputText value="#{data.start_time}" />
+			    </p:column>
+			 
+			    <p:column headerText="FINISH_TIME">
+			        <h:outputText value="#{data.finish_time}" />
+			    </p:column>
+			    
+			</p:dataTable>
+			 
+</h:form>
+</ui:composition>
