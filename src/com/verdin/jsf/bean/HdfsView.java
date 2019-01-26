@@ -48,7 +48,7 @@ public class HdfsView implements Serializable {
 		  
 		 String json =  _client.ambari_configurtion_rest_client (DEFAULT_SERVICE);
 		  
-		 _json_as_pojo = AmbariConfigurationUtil.json2pojo( json);
+		 _json_as_pojo = AmbariConfigurationUtil.json2pojo(json);
 	
 		 items = _json_as_pojo.getItems();    	
 		 

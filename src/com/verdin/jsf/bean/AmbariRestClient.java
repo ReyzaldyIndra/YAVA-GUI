@@ -49,10 +49,11 @@ public class AmbariRestClient {
 			   * 
 			   */
 
-			  // curl -u admin:admin -H "X-Requested-By: ambari" -X GET  http://192.168.3.221:8080/api/v1/clusters/H2SO4/configurations?type=hive-site
+			  // curl -u admin:admin -H "X-Requested-By: ambari" -X GET http://192.168.3.132:6188/ws/v1/timeline/metrics/metadata
+
 
 			  String URL_SECURED_BASIC_AUTHENTICATION = 
-					  "http://"+ hostname +":8080/api/v1/clusters/"+ CLUSTER +"/configurations/service_config_versions/?service_name="+ service_name;
+					  "http://"+ hostname +":6188/ws/v1/timeline/"+ CLUSTER +"/configurations/service_config_versions/?service_name="+ service_name;
 		
 			  // 		AMBARI_INFRA_SOLR, 		AMBARI_METRIC  	ATLAS  	HIVE  KAFKA  	MAPREDUCE2
 			  //       	PIG  RANGER   SQOOP  YARN, ZOOKEEPER, OOZIE	
@@ -62,7 +63,7 @@ public class AmbariRestClient {
 			  //		"http://192.168.3.221:8080/api/v1/clusters/H2SO4/configurations/service_config_versions/?service_name=xxxxxxxx";
 
 
-			  HttpHost targetHost = new HttpHost(hostname , 8080, "http");
+			  HttpHost targetHost = new HttpHost(hostname , 6188, "http");
 			  CredentialsProvider credsProvider = new BasicCredentialsProvider();
 			  credsProvider.setCredentials(AuthScope.ANY, 
 					  new UsernamePasswordCredentials(DEFAULT_USER, DEFAULT_PASS));

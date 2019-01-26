@@ -51,7 +51,7 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.0.0</version>
@@ -91,6 +91,26 @@
 			<version>7.0</version>
 			<scope>provided</scope>
 		</dependency>
+		
+	<!--  	 https://mvnrepository.com/artifact/org.apache.hbase/hbase-client 
+<dependency>
+    <groupId>org.apache.hbase</groupId>
+    <artifactId>hbase-client</artifactId>
+    <version>2.1.2</version>
+</dependency> -->
+
+<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-client 
+<dependency>
+    <groupId>org.apache.hadoop</groupId>
+    <artifactId>hadoop-client</artifactId>
+    <version>3.2.0</version>
+</dependency> -->
+
+
+
+
+		
+
 
 		<!-- Thorntail Fractions -->
 		<dependency>
@@ -193,6 +213,7 @@
            <artifactId>postgresql</artifactId>
            <version>9.4.1212</version>
         </dependency>
+ 
  
 		<!-- https://mvnrepository.com/artifact/org.fluttercode.datafactory/datafactory -->
 		<dependency>

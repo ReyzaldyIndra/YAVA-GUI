@@ -78,6 +78,7 @@ public class AmbariConfigurationRestClientEJB {
 	    	CredentialsProvider credsProvider = new BasicCredentialsProvider();
 	    	credsProvider.setCredentials(AuthScope.ANY, 
 	    	  new UsernamePasswordCredentials(DEFAULT_USER, DEFAULT_PASS));
+	    	
 
 	    	AuthCache authCache = new BasicAuthCache();
 	    	authCache.put(targetHost, new BasicScheme());
@@ -112,6 +113,7 @@ public class AmbariConfigurationRestClientEJB {
 	         	    JsonObject jsonObject = jsonTree.getAsJsonObject();
 
 	         	    JsonElement href = jsonObject.get("href");
+	         	   
 	         	    
 	         	    //System.out.println(href.toString());
 	         	    logger.info(href.toString());

@@ -5,10 +5,12 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
         
-        
-<h:form style="width:100%;">
+
+<ui:debug />       
+<h:form id = "form" style="width:100%;">
 	<p:growl id="message"></p:growl>
-			
+	
+		
 		<h:panelGrid columns="2" cellpadding="0" value="test" style="width:100%">
 			<p:outputLabel value="Hosts" style="float:left;width:80%"></p:outputLabel>
 			<h:panelGrid columns="2" cellpadding="0" value="test" style="width:20%;float:right">
@@ -24,28 +26,27 @@
 			
 			
 		<br style="height:50px"/>
-			
-			<p:dataTable var="host" value="#{hostView.hosts}">
-			
-			    <p:column headerText="IP">
-			        <h:outputText value="#{host.ipv4}" />
+		<p:dataTable id = dataTable value = "#{metrics.scanner}" var="data" paginator="true" rows="10" lazy="true">
+		
+		<!-- <h:outputText var="data"value="#{ContainerMetrics._container_metrics}"></h:outputText>  -->
+		
+			    <p:column headerText="APP_ID">
+			        <h:outputText value="#{data.app_id}" />
 			    </p:column>
 			 
-			    <p:column headerText="Hostname">
-			        <h:outputText value="#{host.host_name}" />
+			    <p:column headerText="CONTAINER_ID">
+			        <h:outputText value="#{data.family}" />
 			    </p:column>
 			 
-			    <p:column headerText="CPU">
-			        <h:outputText value="#{host.cpu_info}" />
+			    <p:column headerText="HOSTNAME">
+			        <h:outputText value="#{data.qualifier}" />
 			    </p:column>
 			 
-			    <p:column headerText="Memory">
-			        <h:outputText value="#{host.total_mem}" />
+			    <p:column headerText="DURATION">
+			        <h:outputText value="#{data.timeStamp}" />
 			    </p:column>
 			    
-			    <p:column headerText="Rack">
-			        <h:outputText value="#{host.rack_info}" />
-			    </p:column>
 			</p:dataTable>
+			 
 </h:form>
 </ui:composition>
