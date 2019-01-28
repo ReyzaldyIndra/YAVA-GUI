@@ -1,148 +1,641 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
-      
- <f:view contentType="text/html" locale="en">
-    <pe:head title="PrimeFaces Extensions - Layout created by pane options" shortcutIcon="#{request.contextPath}/favicon.ico">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
 
- </pe:head>
- <h:body>
- 
-<h:form id="mainForm">
-    <pe:layout id="fullPage" options="#{fullLayout.layoutOptions}"
-                stateCookie="true" widgetVar="fpLayoutWidget">
-        
-        <pe:layoutPane position="north" initClosed="true">
-            <h:panelGrid columns="4" cellpadding="10" value="test" style="float:right">
-        		<p:outputLabel for="basic" value="Basic:" />
-	        		<p:themeSwitcher id="basic" style="width:165px">
-	            		<f:selectItem itemLabel="Choose Theme" itemValue="" />
-	            		<f:selectItems value="#{themeSwitcherView.themes}" var="theme" itemLabel="#{theme.displayName}" itemValue="#{theme.name}"/>
-        				</p:themeSwitcher>
- 
-        			<p:outputLabel for="advanced" value="Advanced:" />
-        				<p:themeSwitcher id="advanced" style="width:165px" effect="fade" var="t">
-            				<f:selectItem itemLabel="Choose Theme" itemValue="#{null}" />
-            				<f:selectItems value="#{themeSwitcherView.themes}" var="theme" itemLabel="#{theme.displayName}" itemValue="#{theme}" />
-			 					<p:column>
-			               			 <h:outputText styleClass="ui-theme ui-theme-#{t.name}" style="display-block" />
-			           			</p:column>
-			 
-			            		<p:column>
-			                		#{t.displayName}
-			            		</p:column>
-        			</p:themeSwitcher>
-    		</h:panelGrid>
-        </pe:layoutPane>
-        <pe:layoutPane position="center">
-        
-             <pe:layoutPane position="center">
-             
-            
-                
-                <p:growl id="growl" life="2000" />
-                   
-                <p:outputPanel id="myPanel">
-                    <ui:include src="/sections/includes/#{menuContentBean.page}.xhtml" />
-                </p:outputPanel>
-                  
-                <p:messages id="msg" showDetail="true" showSummary="true">
-                    <p:effect type="pulsate" event="load" delay="0">
-                        <f:param name="mode" value="'show'"/>
-                        <f:param name="times" value="'1'"/>
-                    </p:effect>
-                </p:messages>
-                    
-            </pe:layoutPane>
-                
-        </pe:layoutPane>
-        
-        <pe:layoutPane position="west">
-             
-          <pe:layoutPane position="center">
-                
-			<f:facet name="header">
-            	<h:outputText value="YAVA-Solusi247"/>
-            </f:facet>
-  				  			
-    		<p:menu toggleable="true" style="width:185px">
-    			<p:menuitem update="myPanel" action="#{menuContentBean.setPage('dashboard')}" value="Dashboard" icon="fa fa-home"/>
-        		<p:submenu label="Services" icon="fa fa-briefcase">
-            		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('include4')}" value="HDFS" icon="fa fa-dot-circle"/>
-            		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('include2')}" value="MAPREDUCE" icon="fa fa-dot-circle"/>
-            		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('include3')}" value="YARN" icon="fa fa-dot-circle"/>
-            		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('hbaseView')}" value="HBase" icon="fa fa-dot-circle"/>
-            		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('zookeeperView')}" value="Zookeeper" icon="fa fa-dot-circle"/>
-            		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('tezView')}" value="Tez" icon="fa fa-dot-circle"/>
-            		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('sqoopView')}" value="Sqoop" icon="fa fa-dot-circle"/>
-            		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('pigView')}" value="Pig" icon="fa fa-dot-circle"/>
-            		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('kafkaView')}" value="Kafka" icon="fa fa-dot-circle"/>
-        		</p:submenu>
+<f:view contentType="text/html" locale="en">
+	<pe:head title="YAVA Solusi 247"
+		shortcutIcon="#{request.contextPath}/favicon.ico">
 
-        		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('HostTable')}" value="data" icon="fa fa-list"/>
-        		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('Alerts')}" value="Alerts" icon="fa fa-bell"/>
-        		<p:submenu label="Cluster Admins" icon="fa fa-tasks">
-            		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('StackTable')}" value="Stacks and Version" icon="fa fa-dot-circle-o"/>
-            		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('#')}" value="Service Accounts" icon="fa fa-dot-circle-o"/>
-            		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('include3')}" value="Kerberos" icon="fa fa-dot-circle-o"/>
-            		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('#')}" value="Service Auto Start" icon="fa fa-dot-circle-o"/>
-        		</p:submenu>
-        		
-    		</p:menu>
-    			<div class ="ui-g">
-		    		<div class="ui-g-12 ui-md-6 ui-lg-2">
-		    			<i class="fa fa-gear" id="bor" style="cursor:pointer" title="Background Operation Running"/>
-		    			
-		    		</div>
-		    		
-					<div class="ui-g-12 ui-md-6 ui-lg-2">
-						<i class="fa fa-bell" id="notif" style="cursor:pointer" title="Notifications"/>
-					
+	</pe:head>
+	<h:body>
+
+		<h:form id="mainForm">
+
+			<pe:layout id="fullPage" options="#{fullLayout.layoutOptions}"
+				stateCookie="true" widgetVar="fpLayoutWidget">
+
+				<!-- <f:facet name="actions" style="float: right">
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-gear" id="bor" style="cursor: pointer"
+								title="Background Operation Running" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bell" id="notif" style="cursor: pointer"
+								title="Notifications" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bars" id="view" style="cursor: pointer"
+								title="Views" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-6">
+							<p:menuButton value="admin" icon="fa fa-user"
+								style="width:100%; font-size:10pt">
+								<p:menuitem value="Setting" style="font-size:10pt" />
+								<p:menuitem value="Manage YAVA" style="font-size:10pt" />
+								<p:menuitem value="About" style="font-size:10pt" />
+								<p:separator />
+								<p:menuitem value="Sign Out" style="font-size:10pt" />
+							</p:menuButton>
+						</div>
 					</div>
-					
-					<div class="ui-g-12 ui-md-6 ui-lg-2">
-						<i class="fa fa-bars" id="view" style="cursor:pointer" title="Views"/>
-					
-					</div>
-					
-					<div class="ui-g-12 ui-md-6 ui-lg-6">
-						<p:menuButton value="admin" icon="fa fa-user" style="width:100%; font-size:10pt">
-		    				<p:menuitem value="Setting" style="font-size:10pt"/>
-		    				<p:menuitem value="Manage YAVA" style="font-size:10pt"/>
-		    				<p:menuitem value="About" style="font-size:10pt"/>	
-		    				<p:separator/>	    					    				
-		    				<p:menuitem value="Sign Out" style="font-size:10pt"/>
-		    			</p:menuButton>
-	    			</div>
-  		    	</div>
-  		    		    			  		    			    	  		  
-            </pe:layoutPane>
-             
-        </pe:layoutPane>
-        
-        
-        
-    </pe:layout>
-</h:form>
+				</f:facet> -->
 
-<h:outputStylesheet library="css" name="global.css"/>
-   
-<h:outputStylesheet id="layoutCSS">
-    body {
-        margin: 4px !important;
-    }
-</h:outputStylesheet>    
+				<!-- <h:panelGrid columns="4" cellpadding="10" style="float:right">
+			        		<div class ="ui-g">
+					    		<div class="ui-g-12 ui-md-6 ui-lg-2">
+					    			<i class="fa fa-gear" id="bor" style="cursor:pointer" title="Background Operation Running"/>
+					    			
+					    		</div>
+					    		
+								<div class="ui-g-12 ui-md-6 ui-lg-2">
+									<i class="fa fa-bell" id="notif" style="cursor:pointer" title="Notifications"/>
+								
+								</div>
+								
+								<div class="ui-g-12 ui-md-6 ui-lg-2">
+									<i class="fa fa-bars" id="view" style="cursor:pointer" title="Views"/>
+								
+								</div>
+								
+								<div class="ui-g-12 ui-md-6 ui-lg-6">
+									<p:menuButton value="admin" icon="fa fa-user" style="width:100%; font-size:10pt">
+					    				<p:menuitem value="Setting" style="font-size:10pt"/>
+					    				<p:menuitem value="Manage YAVA" style="font-size:10pt"/>
+					    				<p:menuitem value="About" style="font-size:10pt"/>	
+					    				<p:separator/>	    					    				
+					    				<p:menuitem value="Sign Out" style="font-size:10pt"/>
+					    			</p:menuButton>
+				    			</div>
+			  		    	</div>
+			    		</h:panelGrid> -->
+			    		
+			    	
+			    	<!-- <p:layoutUnit position="north" resizable="false" size="100" minSize="40" maxSize="200">
+				        <div class="ui-g">
+							<div class="ui-g-12 ui-md-6 ui-lg-2">
+								<i class="fa fa-gear" id="bor" style="cursor: pointer"
+									title="Background Operation Running" />
+
+							</div>
+
+							<div class="ui-g-12 ui-md-6 ui-lg-2">
+								<i class="fa fa-bell" id="notif" style="cursor: pointer"
+									title="Notifications" />
+
+							</div>
+
+							<div class="ui-g-12 ui-md-6 ui-lg-2">
+								<i class="fa fa-bars" id="view" style="cursor: pointer"
+									title="Views" />
+
+							</div>
+
+							<div class="ui-g-12 ui-md-6 ui-lg-6">
+								<p:menuButton value="admin" icon="fa fa-user"
+									style="width:100%; font-size:10pt">
+									<p:menuitem value="Setting" style="font-size:10pt" />
+									<p:menuitem value="Manage YAVA" style="font-size:10pt" />
+									<p:menuitem value="About" style="font-size:10pt" />
+									<p:separator />
+									<p:menuitem value="Sign Out" style="font-size:10pt" />
+								</p:menuButton>
+							</div>
+						</div>
+				    </p:layoutUnit> -->
+			    	
+
+				<!-- Mengubah Tampilan Interface -->
+				<!-- <pe:layoutPane position="north" initClosed="false">
+						<p:outputLabel for="basic" value="Basic:" />
+		        		<p:themeSwitcher id="basic" style="width:165px">
+		            		<f:selectItem itemLabel="Choose Theme" itemValue="" />
+		            		<f:selectItems value="#{themeSwitcherView.themes}" var="theme" itemLabel="#{theme.displayName}" itemValue="#{theme.name}"/>
+	        				</p:themeSwitcher>
+	 
+	        			<p:outputLabel for="advanced" value="Advanced:" />
+	        				<p:themeSwitcher id="advanced" style="width:165px" effect="fade" var="t">
+	            				<f:selectItem itemLabel="Choose Theme" itemValue="#{null}" />
+	            				<f:selectItems value="#{themeSwitcherView.themes}" var="theme" itemLabel="#{theme.displayName}" itemValue="#{theme}" />
+				 					<p:column>
+				               			 <h:outputText styleClass="ui-theme ui-theme-#{t.name}" style="display-block" />
+				           			</p:column>
+				 
+				            		<p:column>
+				                		#{t.displayName}
+				            		</p:column>
+	        			</p:themeSwitcher>
+				</pe:layoutPane> -->
+				
+				
+				<!-- Another Option or Menu -->
+				<!-- <pe:layoutPane position="north" initClosed="false">
+					<h:panelGrid columns="4" cellpadding="10" value="test"
+						style="float:right">
+
+						<div class="ui-g">
+							<div class="ui-g-12 ui-md-6 ui-lg-2">
+								<i class="fa fa-gear" id="bor" style="cursor: pointer"
+									title="Background Operation Running" />
+
+							</div>
+
+							<div class="ui-g-12 ui-md-6 ui-lg-2">
+								<i class="fa fa-bell" id="notif" style="cursor: pointer"
+									title="Notifications" />
+
+							</div>
+
+							<div class="ui-g-12 ui-md-6 ui-lg-2">
+								<i class="fa fa-bars" id="view" style="cursor: pointer"
+									title="Views" />
+
+							</div>
+
+							<div class="ui-g-12 ui-md-6 ui-lg-6">
+								<p:menuButton value="admin" icon="fa fa-user"
+									style="width:100%; font-size:10pt">
+									<p:menuitem value="Setting" style="font-size:10pt" />
+									<p:menuitem value="Manage YAVA" style="font-size:10pt" />
+									<p:menuitem value="About" style="font-size:10pt" />
+									<p:separator />
+									<p:menuitem value="Sign Out" style="font-size:10pt" />
+								</p:menuButton>
+							</div>
+						</div>
+					</h:panelGrid>
+				</pe:layoutPane> -->
 
 
 
-<!-- EXAMPLE-SOURCE-END -->
-      
- 
+				<!-- Layout di Tengah Tampilan -->
 
-</h:body>
+				<pe:layoutPane position="center">
+
+					<pe:layoutPane position="center">
+
+
+
+						<p:growl id="growl" life="2000" />
+
+
+						<!-- <p:outputPanel>
+	                	<h:panelGrid columns="4" cellpadding="10" style="float:right; margin-top:32px">
+			        		<div class ="ui-g">
+					    		<div class="ui-g-12 ui-md-6 ui-lg-2">
+					    			<i class="fa fa-gear" id="bor" style="cursor:pointer" title="Background Operation Running"/>
+					    			
+					    		</div>
+					    		
+								<div class="ui-g-12 ui-md-6 ui-lg-2">
+									<i class="fa fa-bell" id="notif" style="cursor:pointer" title="Notifications"/>
+								
+								</div>
+								
+								<div class="ui-g-12 ui-md-6 ui-lg-2">
+									<i class="fa fa-bars" id="view" style="cursor:pointer" title="Views"/>
+								
+								</div>
+								
+								<div class="ui-g-12 ui-md-6 ui-lg-6">
+									<p:menuButton value="admin" icon="fa fa-user" style="width:100%; font-size:10pt">
+					    				<p:menuitem value="Setting" style="font-size:10pt"/>
+					    				<p:menuitem value="Manage YAVA" style="font-size:10pt"/>
+					    				<p:menuitem value="About" style="font-size:10pt"/>	
+					    				<p:separator/>	    					    				
+					    				<p:menuitem value="Sign Out" style="font-size:10pt"/>
+					    			</p:menuButton>
+				    			</div>
+			  		    	</div>
+			    		</h:panelGrid>
+	                </p:outputPanel> -->
+
+						<!-- <h:panelGrid columns="4" cellpadding="10"
+							style="float:right; margin-top:32px">
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-6 ui-lg-2">
+									<i class="fa fa-gear" id="bor" style="cursor: pointer"
+										title="Background Operation Running" />
+
+								</div>
+
+								<div class="ui-g-12 ui-md-6 ui-lg-2">
+									<i class="fa fa-bell" id="notif" style="cursor: pointer"
+										title="Notifications" />
+
+								</div>
+
+								<div class="ui-g-12 ui-md-6 ui-lg-2">
+									<i class="fa fa-bars" id="view" style="cursor: pointer"
+										title="Views" />
+
+								</div>
+
+								<div class="ui-g-12 ui-md-6 ui-lg-6">
+									<p:menuButton value="admin" icon="fa fa-user"
+										style="width:100%; font-size:10pt">
+										<p:menuitem value="Setting" style="font-size:10pt" />
+										<p:menuitem value="Manage YAVA" style="font-size:10pt" />
+										<p:menuitem value="About" style="font-size:10pt" />
+										<p:separator />
+										<p:menuitem value="Sign Out" style="font-size:10pt" />
+									</p:menuButton>
+								</div>
+							</div>
+						</h:panelGrid> -->
+
+						<!-- <p:outputPanel id="myPanel" styleContent="opacity: 0;">
+	                	
+	                	<h:panelGrid columns="4" cellpadding="10" style="float:right; margin-top:32px">
+			        		<div class ="ui-g">
+					    		<div class="ui-g-12 ui-md-6 ui-lg-2">
+					    			<i class="fa fa-gear" id="bor" style="cursor:pointer" title="Background Operation Running"/>
+					    			
+					    		</div>
+					    		
+								<div class="ui-g-12 ui-md-6 ui-lg-2">
+									<i class="fa fa-bell" id="notif" style="cursor:pointer" title="Notifications"/>
+								
+								</div>
+								
+								<div class="ui-g-12 ui-md-6 ui-lg-2">
+									<i class="fa fa-bars" id="view" style="cursor:pointer" title="Views"/>
+								
+								</div>
+								
+								<div class="ui-g-12 ui-md-6 ui-lg-6">
+									<p:menuButton value="admin" icon="fa fa-user" style="width:100%; font-size:10pt">
+					    				<p:menuitem value="Setting" style="font-size:10pt"/>
+					    				<p:menuitem value="Manage YAVA" style="font-size:10pt"/>
+					    				<p:menuitem value="About" style="font-size:10pt"/>	
+					    				<p:separator/>	    					    				
+					    				<p:menuitem value="Sign Out" style="font-size:10pt"/>
+					    			</p:menuButton>
+				    			</div>
+			  		    	</div>
+			    		</h:panelGrid>
+	                	
+	                    <ui:include src="/sections/includes/#{menuContentBean.page}.xhtml" />
+	                </p:outputPanel> -->
+
+
+						<!-- <p:panelGrid width="100%">
+			        	<f:facet name="actions" style="float: right">
+							<div class ="ui-g">
+						    		<div class="ui-g-12 ui-md-6 ui-lg-2">
+						    			<i class="fa fa-gear" id="bor" style="cursor:pointer" title="Background Operation Running"/>
+						    			
+						    		</div>
+						    		
+									<div class="ui-g-12 ui-md-6 ui-lg-2">
+										<i class="fa fa-bell" id="notif" style="cursor:pointer" title="Notifications"/>
+									
+									</div>
+									
+									<div class="ui-g-12 ui-md-6 ui-lg-2">
+										<i class="fa fa-bars" id="view" style="cursor:pointer" title="Views"/>
+									
+									</div>
+									
+									<div class="ui-g-12 ui-md-6 ui-lg-6">
+										<p:menuButton value="admin" icon="fa fa-user" style="width:100%; font-size:10pt">
+						    				<p:menuitem value="Setting" style="font-size:10pt"/>
+						    				<p:menuitem value="Manage YAVA" style="font-size:10pt"/>
+						    				<p:menuitem value="About" style="font-size:10pt"/>	
+						    				<p:separator/>	    					    				
+						    				<p:menuitem value="Sign Out" style="font-size:10pt"/>
+						    			</p:menuButton>
+					    			</div>
+					    		</div>
+				       	</f:facet>
+				       	
+				       	<p:outputPanel id="myPanel">
+		                    <ui:include src="/sections/includes/#{menuContentBean.page}.xhtml" />
+		                </p:outputPanel>
+				       	
+			    	</p:panelGrid> -->
+
+
+						<!-- <p:outputPanel id="myPanel">
+					        	<p:tabView>
+	         			
+	         			
+	         			
+				        			<p:tab>
+				        				<f:facet name="actions" style="float: right">
+											<div class ="ui-g">
+										    		<div class="ui-g-12 ui-md-6 ui-lg-2">
+										    			<i class="fa fa-gear" id="bor" style="cursor:pointer" title="Background Operation Running"/>
+										    			
+										    		</div>
+										    		
+													<div class="ui-g-12 ui-md-6 ui-lg-2">
+														<i class="fa fa-bell" id="notif" style="cursor:pointer" title="Notifications"/>
+													
+													</div>
+													
+													<div class="ui-g-12 ui-md-6 ui-lg-2">
+														<i class="fa fa-bars" id="view" style="cursor:pointer" title="Views"/>
+													
+													</div>
+													
+													<div class="ui-g-12 ui-md-6 ui-lg-6">
+														<p:menuButton value="admin" icon="fa fa-user" style="width:100%; font-size:10pt">
+										    				<p:menuitem value="Setting" style="font-size:10pt"/>
+										    				<p:menuitem value="Manage YAVA" style="font-size:10pt"/>
+										    				<p:menuitem value="About" style="font-size:10pt"/>	
+										    				<p:separator/>	    					    				
+										    				<p:menuitem value="Sign Out" style="font-size:10pt"/>
+										    			</p:menuButton>
+									    			</div>
+									    		</div>
+								       	</f:facet>
+				        			</p:tab>
+				        
+				        
+				        
+				    			</p:tabView>
+				    			
+			                    <ui:include src="/sections/includes/#{menuContentBean.page}.xhtml" />
+			                </p:outputPanel> -->
+
+
+						<!-- <f:facet name="actions" style="float: right">
+								<div class="ui-g">
+									<div class="ui-g-12 ui-md-6 ui-lg-2">
+										<i class="fa fa-gear" id="bor" style="cursor: pointer"
+											title="Background Operation Running" />
+	
+									</div>
+	
+									<div class="ui-g-12 ui-md-6 ui-lg-2">
+										<i class="fa fa-bell" id="notif" style="cursor: pointer"
+											title="Notifications" />
+	
+									</div>
+	
+									<div class="ui-g-12 ui-md-6 ui-lg-2">
+										<i class="fa fa-bars" id="view" style="cursor: pointer"
+											title="Views" />
+	
+									</div>
+	
+									<div class="ui-g-12 ui-md-6 ui-lg-6">
+										<p:menuButton value="admin" icon="fa fa-user"
+											style="width:100%; font-size:10pt">
+											<p:menuitem value="Setting" style="font-size:10pt" />
+											<p:menuitem value="Manage YAVA" style="font-size:10pt" />
+											<p:menuitem value="About" style="font-size:10pt" />
+											<p:separator />
+											<p:menuitem value="Sign Out" style="font-size:10pt" />
+										</p:menuButton>
+									</div>
+								</div>
+							</f:facet>
+	
+	
+							<p:outputPanel id="myPanel">
+								<ui:include
+									src="/sections/includes/#{menuContentBean.page}.xhtml" />
+							</p:outputPanel> -->
+
+
+
+
+						<p:outputPanel id="myPanel">
+							<ui:include
+								src="/sections/includes/#{menuContentBean.page}.xhtml" />
+						</p:outputPanel>
+
+						<p:messages id="msg" showDetail="true" showSummary="true">
+							<p:effect type="pulsate" event="load" delay="0">
+								<f:param name="mode" value="'show'" />
+								<f:param name="times" value="'1'" />
+							</p:effect>
+						</p:messages>
+
+					</pe:layoutPane>
+
+				</pe:layoutPane>
+
+
+				<!-- Menu Utama -->
+				<pe:layoutPane position="west">
+
+					<pe:layoutPane position="center" styleContent="background:#204d74;">
+
+						<!-- Logo YAVA -->
+						<h:panelGrid width="100%" style="background:#204d74;">
+							<f:facet name="header">
+								<img src="YAVA.png" alt="Logo YAVA"
+									style="width: 33px; height: 38.1px; vertical-align: middle" />
+								<h:outputText value="YAVA-Solusi247"
+									style="font-size:14pt; vertical-align: middle; color:white" />
+							</f:facet>
+						</h:panelGrid>
+
+
+						<!-- Jenis-Jenis Menu -->
+
+
+						<!-- Start New Version -->
+
+						<p:menu toggleable="true" style="width:185px; background:#204d74;">
+							<p:menuitem update="myPanel"
+								action="#{menuContentBean.setPage('dashboard')}"
+								value="&#160; Dashboard" icon="fa fa-home" style="color: white" />
+							<p:submenu label="Services" icon="fa fa-briefcase">
+								<p:menuitem update="myPanel"
+									action="#{menuContentBean.setPage('include4')}" value="HDFS"
+									icon="fa fa-dot-circle" style="color: #d4d4d4; font-size: 12pt" />
+								<p:menuitem update="myPanel"
+									action="#{menuContentBean.setPage('include2')}"
+									value="MAPREDUCE" icon="fa fa-dot-circle"
+									style="color: #d4d4d4; font-size: 12pt" />
+								<p:menuitem update="myPanel"
+									action="#{menuContentBean.setPage('include3')}" value="YARN"
+									icon="fa fa-dot-circle" style="color: #d4d4d4; font-size: 12pt" />
+								<p:menuitem update="myPanel"
+									action="#{menuContentBean.setPage('hbaseView')}" value="HBase"
+									icon="fa fa-dot-circle" style="color: #d4d4d4; font-size: 12pt" />
+								<p:menuitem update="myPanel"
+									action="#{menuContentBean.setPage('zookeeperView')}"
+									value="Zookeeper" icon="fa fa-dot-circle"
+									style="color: #d4d4d4; font-size: 12pt" />
+								<p:menuitem update="myPanel"
+									action="#{menuContentBean.setPage('tezView')}" value="Tez"
+									icon="fa fa-dot-circle" style="color: #d4d4d4; font-size: 12pt" />
+								<p:menuitem update="myPanel"
+									action="#{menuContentBean.setPage('sqoopView')}" value="Sqoop"
+									icon="fa fa-dot-circle" style="color: #d4d4d4; font-size: 12pt" />
+								<p:menuitem update="myPanel"
+									action="#{menuContentBean.setPage('pigView')}" value="Pig"
+									icon="fa fa-dot-circle" style="color: #d4d4d4; font-size: 12pt" />
+								<p:menuitem update="myPanel"
+									action="#{menuContentBean.setPage('kafkaView')}" value="Kafka"
+									icon="fa fa-dot-circle" style="color: #d4d4d4; font-size: 12pt" />
+							</p:submenu>
+
+							<p:menuitem update="myPanel"
+								action="#{menuContentBean.setPage('HostTable')}"
+								value="&#160; Hosts" icon="fa fa-list" style="color: white" />
+							<p:menuitem update="myPanel"
+								action="#{menuContentBean.setPage('Alerts')}"
+								value="&#160; Alerts" icon="fa fa-bell" style="color: white" />
+							<p:submenu label="Cluster Admins" icon="fa fa-tasks">
+								<p:menuitem update="myPanel"
+									action="#{menuContentBean.setPage('StackTable')}"
+									value="&#160; Stacks and Version" icon="fa fa-dot-circle-o"
+									style="color: #d4d4d4; font-size: 12pt" />
+								<p:menuitem update="myPanel"
+									action="#{menuContentBean.setPage('#')}"
+									value="&#160; Service Accounts" icon="fa fa-dot-circle-o"
+									style="color: #d4d4d4; font-size: 12pt" />
+								<p:menuitem update="myPanel"
+									action="#{menuContentBean.setPage('include3')}"
+									value="&#160; Kerberos" icon="fa fa-dot-circle-o"
+									style="color: #d4d4d4; font-size: 12pt" />
+								<p:menuitem update="myPanel"
+									action="#{menuContentBean.setPage('#')}"
+									value="&#160; Service Auto Start" icon="fa fa-dot-circle-o"
+									style="color: #d4d4d4; font-size: 12pt" />
+							</p:submenu>
+						</p:menu>
+
+						<!-- End New Version -->
+
+
+						<!-- Start Old Version -->
+
+						<!-- <p:menu toggleable="true" style="width:185px; background:#204d74;" >
+			   		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('dashboard')}" value="Dashboard" icon="fa fa-home" style="color: white"/>
+			       	<p:submenu label="Services" icon="fa fa-briefcase" style="color: white">
+			       		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('include4')}" value="HDFS" icon="fa fa-dot-circle" style="color: white"/>
+			           	<p:menuitem update="myPanel" action="#{menuContentBean.setPage('include2')}" value="MAPREDUCE" icon="fa fa-dot-circle" style="color: white"/>
+			           	<p:menuitem update="myPanel" action="#{menuContentBean.setPage('include3')}" value="YARN" icon="fa fa-dot-circle" style="color: white"/>
+			           	<p:menuitem update="myPanel" action="#{menuContentBean.setPage('hbaseView')}" value="HBase" icon="fa fa-dot-circle" style="color: white"/>
+			           	<p:menuitem update="myPanel" action="#{menuContentBean.setPage('zookeeperView')}" value="Zookeeper" icon="fa fa-dot-circle" style="color: white"/>
+			           	<p:menuitem update="myPanel" action="#{menuContentBean.setPage('tezView')}" value="Tez" icon="fa fa-dot-circle" style="color: white"/>
+			           	<p:menuitem update="myPanel" action="#{menuContentBean.setPage('sqoopView')}" value="Sqoop" icon="fa fa-dot-circle" style="color: white"/>
+			           	<p:menuitem update="myPanel" action="#{menuContentBean.setPage('pigView')}" value="Pig" icon="fa fa-dot-circle" style="color: white"/>
+			       		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('kafkaView')}" value="Kafka" icon="fa fa-dot-circle" style="color: white"/>
+			       	</p:submenu>
+			
+			        <p:menuitem update="myPanel" action="#{menuContentBean.setPage('HostTable')}" value="Hosts" icon="fa fa-list" style="color: white"/>
+			       	<p:menuitem update="myPanel" action="#{menuContentBean.setPage('Alerts')}" value="Alerts" icon="fa fa-bell" style="color: white"/>
+			       	<p:submenu label="Cluster Admins" icon="fa fa-tasks" style="color: white">
+			           	<p:menuitem update="myPanel" action="#{menuContentBean.setPage('StackTable')}" value="Stacks and Version" icon="fa fa-dot-circle-o" style="color: white"/>
+			       		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('#')}" value="Service Accounts" icon="fa fa-dot-circle-o" style="color: white"/>
+		          		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('include3')}" value="Kerberos" icon="fa fa-dot-circle-o" style="color: white"/>
+		           		<p:menuitem update="myPanel" action="#{menuContentBean.setPage('#')}" value="Service Auto Start" icon="fa fa-dot-circle-o" style="color: white"/>
+			   		</p:submenu>
+		   		</p:menu> -->
+
+						<!-- End Old Version -->
+
+
+						<!-- Start Other Version -->
+
+						<!-- <h:form>
+	    			<p:growl>
+	        			<p:autoUpdate />
+	    			</p:growl>
+	 
+				    <p:panelMenu style="width:300px">
+				        <p:submenu label="Ajax Menuitems">
+				            <p:menuitem value="Save" action="#{menuView.save}" icon="pi pi-save" />
+				            <p:menuitem value="Update" action="#{menuView.update}"  icon="pi pi-refresh" />
+				        </p:submenu>
+				        <p:submenu label="Non-Ajax Menuitem">
+				            <p:menuitem value="Delete" action="#{menuView.delete}"  ajax="false" icon="pi pi-times"/>
+				        </p:submenu>
+				        <p:separator />
+				        <p:submenu label="Navigations" >
+				            <p:submenu label="Links" icon="pi pi-home">
+				                <p:submenu label="PrimeFaces" icon="pi pi-briefcase">
+				                    <p:menuitem value="Home" url="http://www.primefaces.org" icon="pi pi-home" />
+				                    <p:menuitem value="Docs" url="http://www.primefaces.org/documentation" icon="pi pi-file" />
+				                    <p:menuitem value="Download" url="http://www.primefaces.org/downloads" icon="pi pi-arrow-down" />
+				                    <p:menuitem value="Support" url="http://www.primefaces.org/support" icon="pi pi-briefcase" />
+				                </p:submenu>
+				            </p:submenu>
+				            <p:menuitem value="Mobile" icon="pi pi-mobile" />
+				        </p:submenu>
+				    </p:panelMenu>
+				</h:form> -->
+
+						<!-- End Other Version -->
+
+
+						<!-- Start Old Version Option -->
+
+						<!-- <div class ="ui-g">
+			    		<div class="ui-g-12 ui-md-6 ui-lg-2">
+			    			<i class="fa fa-gear" id="bor" style="cursor:pointer" title="Background Operation Running"/>
+			    			
+			    		</div>
+			    		
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bell" id="notif" style="cursor:pointer" title="Notifications"/>
+						
+						</div>
+						
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bars" id="view" style="cursor:pointer" title="Views"/>
+						
+						</div>
+						
+						<div class="ui-g-12 ui-md-6 ui-lg-6">
+							<p:menuButton value="admin" icon="fa fa-user" style="width:100%; font-size:10pt">
+			    				<p:menuitem value="Setting" style="font-size:10pt"/>
+			    				<p:menuitem value="Manage YAVA" style="font-size:10pt"/>
+			    				<p:menuitem value="About" style="font-size:10pt"/>	
+			    				<p:separator/>	    					    				
+			    				<p:menuitem value="Sign Out" style="font-size:10pt"/>
+			    			</p:menuButton>
+		    			</div>
+	  		    	</div> -->
+
+						<!-- End Old Version Option -->
+
+					</pe:layoutPane>
+
+				</pe:layoutPane>
+
+
+
+
+
+			</pe:layout>
+
+
+
+		</h:form>
+
+		<h:outputStylesheet library="css" name="global.css" />
+
+		<h:outputStylesheet id="layoutCSS">
+	    	body {
+	        	margin: 4px !important;
+	    	}
+			</h:outputStylesheet>
+
+
+
+		<!-- EXAMPLE-SOURCE-END -->
+
+
+
+	</h:body>
 
 </f:view>
 
