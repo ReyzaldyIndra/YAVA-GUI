@@ -8,21 +8,57 @@
         
 <h:form style="width:100%;">
 	<p:growl id="message"></p:growl>
-			
-		<h:panelGrid columns="2" cellpadding="0" value="test" style="width:100%">
-			<p:outputLabel value="stacks" style="float:left;width:80%"></p:outputLabel>
-			<h:panelGrid columns="2" cellpadding="0" value="test" style="width:20%;float:right">
-				<p:button value="Filter" icon="fa fa-filter" style="float:right;margin:0;padding:0">
-	    			<f:param name="filter" />
+
+		<h:panelGrid columns="2" cellpadding="0" value="test"
+			style="width:100%">
+			<p:outputLabel style="float:left;width:80%">
+				<h2>Stacks</h2>
+			</p:outputLabel>
+			<h:panelGrid columns="5" cellpadding="0" value="test"
+				style="width:40%;float:right">
+				<p:button value="Filter" icon="fa fa-filter"
+					style="float:right;margin:0;padding:0">
+					<f:param name="filter" />
 				</p:button>
-				<p:button value="Action" icon="fa fa-star" style="float:right;margin-left:0;padding:0">
-	    			<f:param name="action" />
+				<p:button value="Action" icon="fa fa-star"
+					style="float:right;margin-left:0;padding:0">
+					<f:param name="action" />
 				</p:button>
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-6 ui-lg-2">
+						<i class="fa fa-gear" id="bor" style="cursor: pointer"
+							title="Background Operation Running" />
+
+					</div>
+
+					<div class="ui-g-12 ui-md-6 ui-lg-2">
+						<i class="fa fa-bell" id="notif" style="cursor: pointer"
+							title="Notifications" />
+
+					</div>
+
+					<div class="ui-g-12 ui-md-6 ui-lg-2">
+						<i class="fa fa-bars" id="view" style="cursor: pointer"
+							title="Views" />
+
+					</div>
+
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:menuButton value="admin" icon="fa fa-user"
+							style="width:100%; font-size:10pt">
+							<p:menuitem value="Setting" style="font-size:10pt" />
+							<p:menuitem value="Manage YAVA" style="font-size:10pt" />
+							<p:menuitem value="About" style="font-size:10pt" />
+							<p:separator />
+							<p:menuitem value="Sign Out" style="font-size:10pt" />
+						</p:menuButton>
+					</div>
+				</div>
 			</h:panelGrid>
-			
+
 		</h:panelGrid>
-			
-			
+
+
 		<br style="height:50px"/>
 			
 			<p:dataTable var="stack" value="#{stackView.stacks}">

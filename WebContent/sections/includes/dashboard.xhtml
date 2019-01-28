@@ -14,129 +14,353 @@
 
 		<p:tab title="METRICS">
 		
-		<h:panelGrid columns="2" cellpadding="0" value="test" style="width:100%">
-			<p:breadCrumb style="font-size:10pt; float:left; width:60%">
-		    	<p:menuitem value="Breadcrumb"/>
-		    	<p:menuitem value="Dashboard"/>
-		    	<p:menuitem value="Metrics"/>
-			</p:breadCrumb>
+			<f:facet name="actions">
+				<div class ="ui-g">
+			    		<div class="ui-g-12 ui-md-6 ui-lg-2">
+			    			<i class="fa fa-gear" id="bor" style="cursor:pointer" title="Background Operation Running"/>
+			    			
+			    		</div>
+			    		
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bell" id="notif" style="cursor:pointer" title="Notifications"/>
+						
+						</div>
+						
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bars" id="view" style="cursor:pointer" title="Views"/>
+						
+						</div>
+						
+						<div class="ui-g-12 ui-md-6 ui-lg-6">
+							<p:menuButton value="admin" icon="fa fa-user" style="width:100%; font-size:10pt">
+			    				<p:menuitem value="Setting" style="font-size:10pt"/>
+			    				<p:menuitem value="Manage YAVA" style="font-size:10pt"/>
+			    				<p:menuitem value="About" style="font-size:10pt"/>	
+			    				<p:separator/>	    					    				
+			    				<p:menuitem value="Sign Out" style="font-size:10pt"/>
+			    			</p:menuButton>
+		    			</div>
+		    		</div>
+	       	</f:facet>
 			
-			<h:panelGrid columns="2" cellpadding="0" value="test" style="width:40%; float:right">
-				<p:tieredMenu>
-					<p:submenu label="Metric Actions" >				       			        				        								
-						<p:menuitem value="add" icon="fa fa-plus-circle"/>
-						<!-- <p:selectCheckboxMenu id="add" label="Add" icon="fa fa-plus-circle" columns="1">
-					        <f:selectItem itemLabel="HDFS Link" itemValue="HDFS Link"/>
-					        <f:selectItem itemLabel="YARN Link" itemValue="YARN Link"/>
-					        <f:selectItem itemLabel="HBase Link" itemValue="HBase Link"/>
-					    </p:selectCheckboxMenu>
-				    	<p:separator/>
- 						<p:commandButton value="Add" icon="fa fa-check" /> --> 						                                              
-			        				        				        
-			        	<p:submenu label="Edit" icon="fa fa-pencil">
-			            	<p:menuitem value="Reset all widget to default" style ="font-size:10pt"/>
-			        	</p:submenu> 
-			        </p:submenu>
-			    </p:tieredMenu>                
-				<p:tieredMenu>
-					<p:submenu label="Periode">
-		    			<p:menuitem value="Last 1 Hours"/>
-		    			<p:menuitem value="Last 2 Hours"/>
-		    			<p:menuitem value="Last 4 Hours"/>
-		    			<p:menuitem value="Last 12 Hours"/>
-		    			<p:menuitem value="Last 24 Hours"/>
-		    			<p:menuitem value="Last 1 week"/>
-		    			<p:menuitem value="Last 1 month"/>
-		    			<p:menuitem value="Last 1 year"/>
-		    			<p:menuitem value="Custom"/>
-		    		</p:submenu>    				    			
-				</p:tieredMenu>
+		
+			<h:panelGrid columns="2" cellpadding="0" value="test" style="width:100%">
+				<p:breadCrumb style="font-size:10pt; float:left; width:60%">
+			    	<p:menuitem value="Breadcrumb"/>
+			    	<p:menuitem value="Dashboard"/>
+			    	<p:menuitem value="Metrics"/>
+				</p:breadCrumb>
+				
+				<h:panelGrid columns="2" cellpadding="0" value="test" style="width:40%; float:right">
+					<p:tieredMenu>
+						<p:submenu label="Metric Actions" >				       			        				        								
+							<p:menuitem value="add" icon="fa fa-plus-circle"/>
+							<!-- <p:selectCheckboxMenu id="add" label="Add" icon="fa fa-plus-circle" columns="1">
+						        <f:selectItem itemLabel="HDFS Link" itemValue="HDFS Link"/>
+						        <f:selectItem itemLabel="YARN Link" itemValue="YARN Link"/>
+						        <f:selectItem itemLabel="HBase Link" itemValue="HBase Link"/>
+						    </p:selectCheckboxMenu>
+					    	<p:separator/>
+	 						<p:commandButton value="Add" icon="fa fa-check" /> --> 						                                              
+				        				        				        
+				        	<p:submenu label="Edit" icon="fa fa-pencil">
+				            	<p:menuitem value="Reset all widget to default" style ="font-size:10pt"/>
+				        	</p:submenu> 
+				        </p:submenu>
+				    </p:tieredMenu>                
+					<p:tieredMenu>
+						<p:submenu label="Periode">
+			    			<p:menuitem value="Last 1 Hours"/>
+			    			<p:menuitem value="Last 2 Hours"/>
+			    			<p:menuitem value="Last 4 Hours"/>
+			    			<p:menuitem value="Last 12 Hours"/>
+			    			<p:menuitem value="Last 24 Hours"/>
+			    			<p:menuitem value="Last 1 week"/>
+			    			<p:menuitem value="Last 1 month"/>
+			    			<p:menuitem value="Last 1 year"/>
+			    			<p:menuitem value="Custom"/>
+			    		</p:submenu>    				    			
+					</p:tieredMenu>
+				</h:panelGrid>
+				
 			</h:panelGrid>
-			
-		</h:panelGrid>
 			<style type="text/css">
             .ui-panel, div.ui-state-hover {
-                margin: 10px;
-                width:240px;
+                margin-left: 16px;
+                margin-top: 16px;
+                width: 1024px;
+                height: 272px;
             }
              
             .ui-dashboard-column {
-                width:260px;
+                /* margin: 16px;
+                width: 1024px;
+                height: 272px; */
+                padding:0px;
+                margin: 0px;
             }
-      	  </style>
+      	  	</style>
+      	 
   
-			<div style="height:100%">
+			<div style="height:1152px">
 			    <h:form>
-			        <p:growl id="msgs" showDetail="true" />
+			    
+			    <p:growl id="growl" showDetail="true" sticky="true" />  
+			
+				<div class="ui-fluid" style="top:11em; position:absolute">
+					<p:panelGrid columns="3" columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-6" layout="grid">
+						<h:panelGrid columns="2">
+							<f:facet name="header">
+								<h:outputText value="Current"></h:outputText>
+							</f:facet>
+							<h:outputText value="Current Age" />
+							<p:inputNumber value="#{chartView.currentAge}"
+								decimalPlaces="0">
+								<p:ajax update="barChart401K barChartIncome barChartExpenses"
+									listener="#{chartView.onValueChanged}" event="valueChange" />
+							</p:inputNumber>
+							<h:outputText value="Current Income" />
+							<p:inputNumber id="currentIncomeInput"
+								value="#{chartView.currentIncome}" symbol="$">
+								<p:ajax update="barChart401K barChartIncome barChartExpenses"
+									listener="#{chartView.onValueChanged}" event="valueChange" />
+							</p:inputNumber>
+							<h:outputText value="Current 401K Value" />
+							<p:inputNumber id="current401KValueInput"
+								value="#{chartView.current401KValue}" symbol="$">
+								<p:ajax update="barChart401K barChartIncome barChartExpenses"
+									listener="#{chartView.onValueChanged}" event="valueChange" />
+							</p:inputNumber>
+						</h:panelGrid>
+						<h:panelGrid columns="2">
+							<f:facet name="header">
+								<h:outputText value="Forecasts"></h:outputText>
+							</f:facet>
+							<h:outputText value="Target Retirement Age" />
+							<p:inputNumber id="targetRetirementAgeInput"
+								value="#{chartView.targetRetirementAge}" decimalPlaces="0">
+								<p:ajax update="barChart401K barChartIncome barChartExpenses"
+									listener="#{chartView.onValueChanged}" event="valueChange" />
+							</p:inputNumber>
+							<h:outputText value="401K Contribution"></h:outputText>
+							<p:inputNumber id="contribution401kInput"
+								value="#{chartView.contribution401KPercentage}" symbol="%"
+								symbolPosition="s" decimalPlaces="1">
+								<p:ajax update="barChart401K barChartIncome barChartExpenses"
+									listener="#{chartView.onValueChanged}" event="valueChange" />
+							</p:inputNumber>
+							<h:outputText value="Investment Growth"></h:outputText>
+							<p:inputNumber id="investmentGrowthInput"
+								value="#{chartView.investmentGrowth}" symbol="%"
+								symbolPosition="s" decimalPlaces="1">
+								<p:ajax update="barChart401K barChartIncome barChartExpenses"
+									listener="#{chartView.onValueChanged}" event="valueChange" />
+							</p:inputNumber>
+							<h:outputText value="Income Growth/Inflation"></h:outputText>
+							<p:inputNumber id="incomeGrowthInput"
+								value="#{chartView.incomeGrowth}" symbol="%"
+								symbolPosition="s" decimalPlaces="1">
+								<p:ajax update="barChart401K barChartIncome barChartExpenses"
+									listener="#{chartView.onValueChanged}" event="valueChange" />
+							</p:inputNumber>
+							<h:outputText value="Retirement Expenses"></h:outputText>
+								<p:inputNumber id="retirementExpensesInput"
+									value="#{chartView.retirementYearlyExpensesPercentage}"
+									symbol="%" symbolPosition="s" decimalPlaces="1">
+									<p:ajax update="barChart401K barChartIncome barChartExpenses"
+										listener="#{chartView.onValueChanged}"
+										event="valueChange" />
+								</p:inputNumber>
+							
+						</h:panelGrid>
+						<h:panelGrid columns="1">
+							<h:panelGrid columns="2">
+							</h:panelGrid>
+							<br/>
+							<p:dataTable value="#{chartView.additionalIncomeSources}"
+								var="additionalIncomeSourceBean" editable="true">
+								<f:facet name="header">
+           							Additional Income Sources
+       							</f:facet>       							      							
+								<p:column headerText="Name">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText
+												value="#{additionalIncomeSourceBean.sourceName}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText id="modelInput"
+												value="#{additionalIncomeSourceBean.sourceName}"
+												style="width:100%" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="Yearly Amount">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{additionalIncomeSourceBean.yearlyAmount}">
+												<f:convertNumber pattern="¤#,###" currencySymbol="$" />
+											</h:outputText>
+										</f:facet>
+										<f:facet name="input">
+											<p:inputNumber
+												value="#{additionalIncomeSourceBean.yearlyAmount}" symbol="$"
+												style="width:100%" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="Effective Age">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText 
+												value="#{additionalIncomeSourceBean.effectiveAge}" decimalPlaces="0"/>
+										</f:facet>
+										<f:facet name="input">
+											<p:inputNumber
+												value="#{additionalIncomeSourceBean.effectiveAge}"
+												style="width:100%" decimalPlaces="0"/>
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="Inflation Adjusted">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:selectBooleanCheckbox disabled="true" style="vertical-align: middle;width:100%"
+												value="#{additionalIncomeSourceBean.inflationAdjusted}" />
+										</f:facet>
+										<f:facet name="input">
+											<h:selectBooleanCheckbox style="vertical-align: middle;width:100%"
+												value="#{additionalIncomeSourceBean.inflationAdjusted}" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column style="width:32px">
+									<p:rowEditor />
+								</p:column>
+							</p:dataTable>
+						</h:panelGrid>
+					</p:panelGrid>
+				<p:panel>
+				<p:chart id="barChart401K" type="line"
+					model="#{chartView.model401k}" responsive="true"/>
+				<p:chart id="barChartIncome" type="line"
+					model="#{chartView.modelIncome}" responsive="true"/>
+				<p:chart id="barChartExpenses" type="line"
+					model="#{chartView.modelExpenses}" responsive="true"/>
+				</p:panel>
+</div>
+			    
+			    
+			        <!-- <p:growl id="msgs" showDetail="true" />
 			 
 			        <p:dashboard id="board" model="#{dashboardView.model}">
 			            <p:ajax event="reorder" listener="#{dashboardView.handleReorder}" update="msgs" />
 			 
-			            <p:panel id="memoryUsage" header="Memory Usage" style="font-size:12pt">
-			            	<p:chart id="memory" type="line" model="#{chartView.lineModel1}" style="width:100%; height:120px"/>
-							<p:poll interval="1" update="memory"/>
+			            <p:panel id="memoryUsage" header="Memory Usage" style="font-size:16pt; width:1024px; height:272px">
+			            	<p:chart id="memory" type="line" model="#{chartView.lineModel1}" style="width:900px; height:220px"/>
+							<p:poll interval="2" update="memory"/>
+			            </p:panel>
+			 			
+			 			<p:panel id="networkUsage" header="Network Usage" style="font-size:16pt; width:1024px; height:272px">
+							<p:chart id="network" type="line" model="#{chartView.lineModel2}" style="width:900px; height:220px"/>
+							<p:poll interval="2" update="network"/>
+			            </p:panel>
+			 			
+			 			<p:panel id="CPUUsage" header="CPU Usage" style="font-size:16pt; width:1024px; height:272px">
+							<p:chart id="cpu" type="line" model="#{chartView.areaModel1}" style="width:900px; height:220px"/>
+							<p:poll interval="2" update="cpu"/>
+			            </p:panel>
+			 			
+			            <p:panel id="clusterLoad" header="Cluster Load" style="font-size:16pt; width:1024px; height:272px">
+			                <p:chart id="cluster" type="line" model="#{chartView.lineModel3}" style="width:900px; height:220px"/>
+							<p:poll interval="2" update="cluster"/>
 			            </p:panel>
 			 
-			            <p:panel id="clusterLoad" header="Cluster Load" style="font-size:12pt">
-			                <p:chart id="cluster" type="line" model="#{chartView.lineModel3}" style="width:100%; height:120px"/>
-							<p:poll interval="1" update="cluster"/>
+			            <p:panel id="networkUsage" header="Network Usage" style="font-size:16pt; width:1024px; height:272px; margin: 16px">
+							<p:chart id="network" type="line" model="#{chartView.lineModel2}" style="width:900px; height:220px"/>
+							<p:poll interval="2" update="network"/>
 			            </p:panel>
 			 
-			            <p:panel id="networkUsage" header="Network Usage" style="font-size:12pt">
-							<p:chart id="network" type="line" model="#{chartView.lineModel2}" style="width:100%; height:120px"/>
-							<p:poll interval="1" update="network"/>
-			            </p:panel>
-			 
-			            <p:panel id="HDFSDiskUsage" header="HDFS Disk Usage" style="font-size:12pt">
-			 				<p:chart id="hdfs" type="donut" model="#{chartView.donutModel2}" style="width:100%; height:120px"/>
-							<p:poll interval="1" update="hdfs"/>
+			            <p:panel id="HDFSDiskUsage" header="HDFS Disk Usage" style="font-size:14pt; width:512px; height:272px">
+			 				<p:chart id="hdfs" type="donut" model="#{chartView.donutModel2}" style="width:450px; height:220px"/>
+							<p:poll interval="10" update="hdfs"/>
 			             </p:panel>
 			 
-			            <p:panel id="nameNodeHeap" header="NameNode Heap" style="font-size:12pt">
-			                <p:chart id="nameNode" type="donut" model="#{chartView.donutModel1}" style="width:100%; height:120px"/>
-							<p:poll interval="1" update="nameNode"/>									  
+			            <p:panel id="nameNodeHeap" header="NameNode Heap" style="font-size:14pt; width:512px; height:272px">
+			                <p:chart id="nameNode" type="donut" model="#{chartView.donutModel1}" style="width:450px; height:220px"/>
+							<p:poll interval="10" update="nameNode"/>									  
 			            </p:panel>
 			            
-			            <p:panel id="nameNodeCPUWIO" header="NameNode CPU WIO" style="font-size:12pt">
-			                <p:chart id="nameNodeCPU" type="donut" model="#{chartView.donutModel3}" style="width:100%; height:120px"/>
-							<p:poll interval="1" update="nameNodeCPU"/>
+			            <p:panel id="nameNodeCPUWIO" header="NameNode CPU WIO" style="font-size:14pt; width:512px; height:272px">
+			                <p:chart id="nameNodeCPU" type="donut" model="#{chartView.donutModel3}" style="width:450px; height:220px"/>
+							<p:poll interval="10" update="nameNodeCPU"/>
 			            </p:panel>
 			            
-			            <p:panel id="CPUUsage" header="CPU Usage" style="font-size:12pt">
-							<p:chart id="cpu" type="line" model="#{chartView.areaModel1}" style="width:100%; height:120px"/>
-							<p:poll interval="1" update="cpu"/>
+			            <p:panel id="CPUUsage" header="CPU Usage" style="font-size:16pt; width:1024px; height:272px; margin: 16px">
+							<p:chart id="cpu" type="line" model="#{chartView.areaModel1}" style="width:900px; height:220px"/>
+							<p:poll interval="2" update="cpu"/>
 			            </p:panel>
 			            
-			            <p:panel id="resourceManageHeap" header="Resource Manage Heap" style="font-size:12pt">
-			                <p:chart id="resourceManage" type="donut" model="#{chartView.donutModel4}" style="width:100%; height:120px"/>
-							<p:poll interval="1" update="resourceManage"/>
+			            <p:panel id="resourceManageHeap" header="Resource Manage Heap" style="font-size:14pt; width:512px; height:272px">
+			                <p:chart id="resourceManage" type="donut" model="#{chartView.donutModel4}" style="width:450px; height:220px"/>
+							<p:poll interval="10" update="resourceManage"/>
 			            </p:panel>
 			            
-			            <p:panel id="hbaseMasterHeap" header="HBase Master Heap" style="font-size:12pt">
-			                <p:chart id="hbaseMaster" type="donut" model="#{chartView.donutModel5}" style="width:100%; height:120px"/>
-							<p:poll interval="1" update="hbaseMaster"/>
+			            <p:panel id="hbaseMasterHeap" header="HBase Master Heap" style="font-size:14pt; width:512px; height:272px">
+			                <p:chart id="hbaseMaster" type="donut" model="#{chartView.donutModel5}" style="width:450px; height:220px"/>
+							<p:poll interval="10" update="hbaseMaster"/>
 			            </p:panel>
 			            
-			            <p:panel id="NameNodeRPC" header="NameNode RPC" style="font-size:12pt">
+			            <p:panel id="NameNodeRPC" header="NameNode RPC" style="font-size:14pt; width:512px; height:272px">
 			                
 			            </p:panel>
 			            			           
 			        </p:dashboard>
 			 
 			        <div style="clear:both" />
-			    </h:form>
+ -->			    </h:form>
 			</div>
     	</p:tab>
-		
-	     
+	   	
+	   	
 	    <p:tab title="HEATMAPS">
-	    <p:breadCrumb style="font-size:10pt">
-		    	<p:menuitem value="Breadcrumb"/>
-		    	<p:menuitem value="Dashboard"/>
-		    	<p:menuitem value="Heatmaps"/>
+	    
+		    <f:facet name="actions">
+				<div class ="ui-g">
+			    		<div class="ui-g-12 ui-md-6 ui-lg-2">
+			    			<i class="fa fa-gear" id="bor" style="cursor:pointer" title="Background Operation Running"/>
+			    			
+			    		</div>
+			    		
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bell" id="notif" style="cursor:pointer" title="Notifications"/>
+						
+						</div>
+						
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bars" id="view" style="cursor:pointer" title="Views"/>
+						
+						</div>
+						
+						<div class="ui-g-12 ui-md-6 ui-lg-6">
+							<p:menuButton value="admin" icon="fa fa-user" style="width:100%; font-size:10pt">
+			    				<p:menuitem value="Setting" style="font-size:10pt"/>
+			    				<p:menuitem value="Manage YAVA" style="font-size:10pt"/>
+			    				<p:menuitem value="About" style="font-size:10pt"/>	
+			    				<p:separator/>	    					    				
+			    				<p:menuitem value="Sign Out" style="font-size:10pt"/>
+			    			</p:menuButton>
+		    			</div>
+		    		</div>
+	       	</f:facet>
+		    
+		    <p:breadCrumb style="font-size:10pt">
+			    	<p:menuitem value="Breadcrumb"/>
+			    	<p:menuitem value="Dashboard"/>
+			    	<p:menuitem value="Heatmaps"/>
 			</p:breadCrumb>
-	    <h:form>
-			 <div class="ui-g">
+		    <h:form>
+				 <div class="ui-g">
                     	<div class="ui-g-12 ui-md-6">
                     			<p:growl id="messages" />
                     			
@@ -247,6 +471,36 @@
 		</p:tab>
 		
 		<p:tab title="CONFIG HISTORY">	
+			
+			<f:facet name="actions">
+				<div class ="ui-g">
+			    		<div class="ui-g-12 ui-md-6 ui-lg-2">
+			    			<i class="fa fa-gear" id="bor" style="cursor:pointer" title="Background Operation Running"/>
+			    			
+			    		</div>
+			    		
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bell" id="notif" style="cursor:pointer" title="Notifications"/>
+						
+						</div>
+						
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bars" id="view" style="cursor:pointer" title="Views"/>
+						
+						</div>
+						
+						<div class="ui-g-12 ui-md-6 ui-lg-6">
+							<p:menuButton value="admin" icon="fa fa-user" style="width:100%; font-size:10pt">
+			    				<p:menuitem value="Setting" style="font-size:10pt"/>
+			    				<p:menuitem value="Manage YAVA" style="font-size:10pt"/>
+			    				<p:menuitem value="About" style="font-size:10pt"/>	
+			    				<p:separator/>	    					    				
+			    				<p:menuitem value="Sign Out" style="font-size:10pt"/>
+			    			</p:menuButton>
+		    			</div>
+		    		</div>
+	       	</f:facet>
+			
 			<p:breadCrumb style="font-size:10pt">
 		    	<p:menuitem value="Breadcrumb"/>
 		    	<p:menuitem value="Dashboard"/>
@@ -254,8 +508,8 @@
 			</p:breadCrumb>
 				
 		</p:tab>
-		
-	</p:tabView>    
+
+	</p:tabView>
 	
 </h:form>    
 

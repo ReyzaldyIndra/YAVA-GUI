@@ -1,863 +1,1050 @@
-<ui:composition
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui"
-        xmlns:pe="http://primefaces.org/ui/extensions">
-        
-<!-- EXAMPLE-SOURCE-START -->
-<h:form id="tabForm" style="width:100%;">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
 
-	<p:growl id="message"></p:growl>
-	<p:tabView activeIndex="#{tabViewManagedBean.index}">
-		
-		<p:tab title="SUMMARY">
-		<p:breadCrumb style="font-size:10pt">
-		   	<p:menuitem value="Breadcrumb"/>
-		   	<p:menuitem value="Services"/>
-		   	<p:menuitem value="HDFS"/>
-		    <p:menuitem value="Summary"/>
-		</p:breadCrumb>
-    			<div class="ui-g">
-        			<div class="ui-g-12 ui-md-2">Component</div>
-        			<div class="ui-g-12 ui-md-10 ui-g-nopad">
-           			<div class="ui-g-12 ui-g-nopad">
-                	<div class="ui-g">
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:commandButton value="Started" id="withIcon1" icon="ui-icon-circle-check" />
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="STANDBY NAMENODE"></p:outputLabel>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:commandButton value="Started" id="withIcon2" icon="ui-icon-circle-check" />
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="ZKFAILOVER CONTROLLER"></p:outputLabel>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:commandButton value="Started" id="withIcon3" icon="ui-icon-circle-check"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="ACTIVE NAMENODE"></p:outputLabel>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:commandButton value="Started" id="withIcon4" icon="ui-icon-circle-check"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="ZKFAILOVER CONTROLLER"></p:outputLabel>
-                    		</div>
-                    	</div>
-            		</div>
-            	
-            	<div class="ui-g">
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="3d 1m"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="NAMENODE UPTIME"></p:outputLabel>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="13.9%"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="140.4 MB / 1011.3 MB"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="SNAMENODE"></p:outputLabel>
-                    		</div>
-                    	</div>
-            	</div>
-            	
-            	<div class="ui-g">
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="1/1 Started"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="DATANODES"></p:outputLabel>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="0/0 Live"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="JOURNALNODES"></p:outputLabel>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="0/0 Started"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="NFSGATEWAYS"></p:outputLabel>
-                    		</div>
-                    	</div>
-            	</div>
-            	
-            	<div class="ui-g">
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="DATANODES STATUS"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="1"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="Line"></p:outputLabel>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="0"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="Dead"></p:outputLabel>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="0"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="Decommissioning"></p:outputLabel>
-                    		</div>
-                    	</div>
-            	</div>
-            	
-           		</div>
-       			</div>  
-       			</div>
-       			
-    	<div class="ui-g">
-    	<div class="ui-g-12 ui-md-2">Service Metrics</div>
-    	<div class="ui-g-12 ui-md-10 ui-g-nopad">
-    	<div class="ui-g-12 ui-g-nopad">
-		
-                	<div class="ui-g">
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="Blocks"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="STANDBY NAMENODE"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="Total"/>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="0"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="Corrupt Replica"></p:outputLabel>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="0"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="Missing"></p:outputLabel>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="0"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="Under Replica"></p:outputLabel>
-                    		</div>
-                    	</div>
-            		</div>		
-		
-                	<div class="ui-g">
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="n/a"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="TOTAL FILES+"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="DIRECTORIES"/>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="No pending upgrade"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="UPGRADE STATUS"></p:outputLabel>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="Not in safe mode"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="SAFE MODE STATUS"></p:outputLabel>
-                    		</div>
-                    	</div>
-            		</div>
-            		
-                	<div class="ui-g">
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="11.07%"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="13.0 GB/117.5 GB"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="Disk Usage (DFS used)"/>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="38.03%"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="44.7 GB/117.5 GB"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="Disk Usage (Non DFS used)"></p:outputLabel>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-3">
-                    		<div>
-                    			<p:outputLabel value="50.9%"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="59.8 GB/117.5 GB"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="Disk Remaining"/>
-                    		</div>
-                    	</div>
-            		</div>		
-		
-		</div>
-		</div>    	
-    	</div>
-       			
-    	</p:tab>
-		
-	     
-	    <p:tab title="HEATMAPS">
-	    <p:breadCrumb style="font-size:10pt">
-		   	<p:menuitem value="Breadcrumb"/>
-		   	<p:menuitem value="Services"/>
-		   	<p:menuitem value="HDFS"/>
-		    <p:menuitem value="Heatmaps"/>
-		</p:breadCrumb>
-			
-        	<h:form>
-    			
-    			<!-- <p:commandButton value="Started" id="withIcon" icon="ui-icon-circle-check" style="color:White;background:Red;"/>
+	<!-- EXAMPLE-SOURCE-START -->
+	<h:form id="tabForm" style="width:100%;">
+
+		<p:growl id="message"></p:growl>
+		<p:tabView activeIndex="#{tabViewManagedBean.index}">
+
+			<p:tab title="SUMMARY">
+				<f:facet name="actions">
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-gear" id="bor" style="cursor: pointer"
+								title="Background Operation Running" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bell" id="notif" style="cursor: pointer"
+								title="Notifications" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bars" id="view" style="cursor: pointer"
+								title="Views" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-6">
+							<p:menuButton value="admin" icon="fa fa-user"
+								style="width:100%; font-size:10pt">
+								<p:menuitem value="Setting" style="font-size:10pt" />
+								<p:menuitem value="Manage YAVA" style="font-size:10pt" />
+								<p:menuitem value="About" style="font-size:10pt" />
+								<p:separator />
+								<p:menuitem value="Sign Out" style="font-size:10pt" />
+							</p:menuButton>
+						</div>
+					</div>
+				</f:facet>
+
+				<p:breadCrumb style="font-size:10pt">
+					<p:menuitem value="Breadcrumb" />
+					<p:menuitem value="Services" />
+					<p:menuitem value="HDFS" />
+					<p:menuitem value="Summary" />
+				</p:breadCrumb>
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-2">Component</div>
+					<div class="ui-g-12 ui-md-10 ui-g-nopad">
+						<div class="ui-g-12 ui-g-nopad">
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:commandButton value="Started" id="withIcon1"
+											icon="ui-icon-circle-check" />
+									</div>
+									<div>
+										<p:outputLabel value="STANDBY NAMENODE"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:commandButton value="Started" id="withIcon2"
+											icon="ui-icon-circle-check" />
+									</div>
+									<div>
+										<p:outputLabel value="ZKFAILOVER CONTROLLER"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:commandButton value="Started" id="withIcon3"
+											icon="ui-icon-circle-check" />
+									</div>
+									<div>
+										<p:outputLabel value="ACTIVE NAMENODE"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:commandButton value="Started" id="withIcon4"
+											icon="ui-icon-circle-check" />
+									</div>
+									<div>
+										<p:outputLabel value="ZKFAILOVER CONTROLLER"></p:outputLabel>
+									</div>
+								</div>
+							</div>
+
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="3d 1m"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="NAMENODE UPTIME"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="13.9%"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="140.4 MB / 1011.3 MB"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="SNAMENODE"></p:outputLabel>
+									</div>
+								</div>
+							</div>
+
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="1/1 Started"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="DATANODES"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="0/0 Live"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="JOURNALNODES"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="0/0 Started"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="NFSGATEWAYS"></p:outputLabel>
+									</div>
+								</div>
+							</div>
+
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="DATANODES STATUS"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="1"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="Line"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="0"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="Dead"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="0"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="Decommissioning"></p:outputLabel>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-2">Service Metrics</div>
+					<div class="ui-g-12 ui-md-10 ui-g-nopad">
+						<div class="ui-g-12 ui-g-nopad">
+
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="Blocks" />
+									</div>
+									<div>
+										<p:outputLabel value="STANDBY NAMENODE"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="Total" />
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="0" />
+									</div>
+									<div>
+										<p:outputLabel value="Corrupt Replica"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="0" />
+									</div>
+									<div>
+										<p:outputLabel value="Missing"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="0" />
+									</div>
+									<div>
+										<p:outputLabel value="Under Replica"></p:outputLabel>
+									</div>
+								</div>
+							</div>
+
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="n/a" />
+									</div>
+									<div>
+										<p:outputLabel value="TOTAL FILES+"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="DIRECTORIES" />
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="No pending upgrade" />
+									</div>
+									<div>
+										<p:outputLabel value="UPGRADE STATUS"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="Not in safe mode" />
+									</div>
+									<div>
+										<p:outputLabel value="SAFE MODE STATUS"></p:outputLabel>
+									</div>
+								</div>
+							</div>
+
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="11.07%" />
+									</div>
+									<div>
+										<p:outputLabel value="13.0 GB/117.5 GB"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="Disk Usage (DFS used)" />
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="38.03%" />
+									</div>
+									<div>
+										<p:outputLabel value="44.7 GB/117.5 GB"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="Disk Usage (Non DFS used)"></p:outputLabel>
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-3">
+									<div>
+										<p:outputLabel value="50.9%" />
+									</div>
+									<div>
+										<p:outputLabel value="59.8 GB/117.5 GB"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="Disk Remaining" />
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</p:tab>
+
+
+			<p:tab title="HEATMAPS">
+				<f:facet name="actions">
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-gear" id="bor" style="cursor: pointer"
+								title="Background Operation Running" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bell" id="notif" style="cursor: pointer"
+								title="Notifications" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bars" id="view" style="cursor: pointer"
+								title="Views" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-6">
+							<p:menuButton value="admin" icon="fa fa-user"
+								style="width:100%; font-size:10pt">
+								<p:menuitem value="Setting" style="font-size:10pt" />
+								<p:menuitem value="Manage YAVA" style="font-size:10pt" />
+								<p:menuitem value="About" style="font-size:10pt" />
+								<p:separator />
+								<p:menuitem value="Sign Out" style="font-size:10pt" />
+							</p:menuButton>
+						</div>
+					</div>
+				</f:facet>
+
+				<p:breadCrumb style="font-size:10pt">
+					<p:menuitem value="Breadcrumb" />
+					<p:menuitem value="Services" />
+					<p:menuitem value="HDFS" />
+					<p:menuitem value="Heatmaps" />
+				</p:breadCrumb>
+
+				<h:form>
+
+					<!-- <p:commandButton value="Started" id="withIcon" icon="ui-icon-circle-check" style="color:White;background:Red;"/>
     			<p:commandButton value="Started" id="withIcon" icon="ui-icon-circle-check" style="background:Red;"/>
     			<p:commandButton id="withIcon" icon="ui-icon-circle-check" style="color:White;background:Red;"/> -->
-    			
-    			<div class="ui-g">
-                    	<div class="ui-g-12 ui-md-6">
-                    		<div>
-                    			<p:growl id="messages" />
-    							<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-        						<p:splitButton id="basic" value="SELECT METRIC" actionListener="#{buttonView.save}" update="messages">
-            						<p:menuitem value="Update" actionListener="#{buttonView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
-            						<p:menuitem value="Delete" actionListener="#{buttonView.delete}" ajax="false" icon="ui-icon-close" />
-            						<p:separator />
-            						<p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink" />
-        						</p:splitButton>  
-    							</h:panelGrid>
-                    		</div>
-                    		<div>
-                    			<p:commandButton value="-" style="background:Lightgreen;"/>
-                    			<p:outputLabel value="0MB - 205MB"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:commandButton value="-" style="background:Green;"/>
-                    			<p:outputLabel value="205MB - 410MB"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:commandButton value="-" style="background:Yellow;"/>
-                    			<p:outputLabel value="410MB - 614MB"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:commandButton value="-" style="background:Orange;"/>
-                    			<p:outputLabel value="614MB - 819MB"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:commandButton value="-" style="background:Red;"/>
-                    			<p:outputLabel value="819MB - 1024MB"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:commandButton value="-" style="background:Grey;"/>
-                    			<p:outputLabel value="Invalid data"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:commandButton value="-" style="background:Black;"/>
-                    			<p:outputLabel value="Data Not Available"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:commandButton value="-" style="background:Lightgrey;"/>
-                    			<p:outputLabel value="Not Applicable"></p:outputLabel>
-                    		</div>
-                    	</div>
-                    	<div class="ui-g-12 ui-md-6">
-                    		<div>
-            					<h2>HDFS Bytes Read</h2>
-            				</div>
-            				<div>
-            					<p:outputLabel value="/default-rack"></p:outputLabel>
-            				</div>
-            				<div>
-                    			<p:commandButton value="------------------------------------------------------------------" style="background:Green;"/>
-                			</div>
-                    	</div>
-            	</div>
-            	<div>
-            		<p:outputLabel value="Maximum:"></p:outputLabel>
-            	</div>
-            	<div>
-        			<div class="ui-g ui-fluid">
-    					<div class="ui-g-12 ui-md-4">
-        					<div class="ui-inputgroup">
-            					<p:inputText placeholder="1024" />
-            					<p:commandButton value="MB"  styleClass="white-button"/>
-        					</div>
-    					</div>
-					</div>
-            	</div>
-            	
-            	
-			</h:form>
-		</p:tab>
-		
-		<p:tab title="CONFIGS">
-		<p:breadCrumb style="font-size:10pt">
-		   	<p:menuitem value="Breadcrumb"/>
-		   	<p:menuitem value="Services"/>
-		   	<p:menuitem value="HDFS"/>
-		    <p:menuitem value="Configs"/>
-		</p:breadCrumb>	
-			<h:form>
-    			<p:growl id="messages" />
-    			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-        		<p:splitButton id="basic" value="Version 1" actionListener="#{buttonView.save}" update="messages">
-            		<p:menuitem value="Update" actionListener="#{buttonView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
-            		<p:menuitem value="Delete" actionListener="#{buttonView.delete}" ajax="false" icon="ui-icon-close" />
-            		<p:separator />
-            		<p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink" />
-        		</p:splitButton>  
-    			</h:panelGrid>
-    			
-    			<p:tabView>
-            		<p:tab title="SETTINGS">
-            		<div class="ui-g">
-                    	<div class="ui-g-12 ui-md-6">
-               			<h2>NameNode</h2>
-               			<div><p:outputLabel value="NameNode directories"></p:outputLabel></div>
-               			
-               			<h:form>               
-    						<p:inputTextarea rows="5" cols="30" maxlength="10" value="/hadoop/hdfs/namenode" autoResize="false" />
-    						<h:outputText id="display" />
-						</h:form>
-						
-               			<div><p:outputLabel value="NameNode Java heap size"></p:outputLabel></div>
-               			<h:form>               
-    						<h:panelGrid columns="1" style="margin-bottom: 10px">
-       						<h:outputText id="output" value="GB#{sliderView.number2}" />
-        					<h:inputHidden id="txt2" value="#{sliderView.number4}" />
-        					<p:slider for="txt2" display="output" style="width: 200px" displayTemplate="{value}GB" />
-    						</h:panelGrid>
-						</h:form>
-						
-						<div><p:outputLabel value="NameNode server threads"></p:outputLabel></div>
-               			<h:form>               
-    						<h:panelGrid columns="1" style="margin-bottom: 10px">
-       						<h:outputText id="output3" value="GB#{sliderView.number6}" />
-        					<h:inputHidden id="txt3" value="#{sliderView.number7}" />
-        					<p:slider for="txt3" display="output3" style="width: 200px" displayTemplate="{value}GB" />
-    						</h:panelGrid>
-						</h:form>
-						
-						<div><p:outputLabel value="Minimumm replicated blocks %"></p:outputLabel></div>
-               			<h:form>               
-    						<h:panelGrid columns="1" style="margin-bottom: 10px">
-       						<h:outputText id="output4" value="GB#{sliderView.number8}" />
-        					<h:inputHidden id="txt4" value="#{sliderView.number9}" />
-        					<p:slider for="txt4" display="output4" style="width: 200px" displayTemplate="{value}GB" />
-    						</h:panelGrid>
-						</h:form>
-						</div>
-						
+
+					<div class="ui-g">
 						<div class="ui-g-12 ui-md-6">
-						<h2>DataNode</h2>
-						<div><p:outputLabel value="DataNode Directories"></p:outputLabel></div>
-						
-						<h:form>               
-    						<p:inputTextarea rows="5" cols="30" maxlength="10" value="/hadoop/hdfs/data" autoResize="false" />
-    						<h:outputText id="display" />
-						</h:form>
-						
-						<div><p:outputLabel value="DataNbode failed disk tolerance"></p:outputLabel></div>
-               			<h:form>               
-    						<h:panelGrid columns="1" style="margin-bottom: 10px">
-       						<h:outputText id="output5" value="GB#{sliderView.number10}" />
-        					<h:inputHidden id="txt5" value="#{sliderView.number11}" />
-        					<p:slider for="txt5" display="output5" style="width: 200px" displayTemplate="{value}GB" />
-    						</h:panelGrid>
-						</h:form>
-						
-						<div><p:outputLabel value="DataNbode failed disk tolerance"></p:outputLabel></div>
-               			<h:form>               
-    						<h:panelGrid columns="1" style="margin-bottom: 10px">
-       						<h:outputText id="output6" value="GB#{sliderView.number12}" />
-        					<h:inputHidden id="txt6" value="#{sliderView.number13}" />
-        					<p:slider for="txt6" display="output6" style="width: 200px" displayTemplate="{value}GB" />
-    						</h:panelGrid>
-						</h:form>
-						
-						<div><p:outputLabel value="DataNbode failed disk tolerance"></p:outputLabel></div>
-               			<h:form>               
-    						<h:panelGrid columns="1" style="margin-bottom: 10px">
-       						<h:outputText id="output7" value="GB#{sliderView.number14}" />
-        					<h:inputHidden id="txt7" value="#{sliderView.number15}" />
-        					<p:slider for="txt7" display="output7" style="width: 200px" displayTemplate="{value}GB" />
-    						</h:panelGrid>
-						</h:form>
+							<div>
+								<p:growl id="messages" />
+								<h:panelGrid columns="2" style="margin-bottom:10px"
+									cellpadding="5">
+									<p:splitButton id="basic" value="SELECT METRIC"
+										actionListener="#{buttonView.save}" update="messages">
+										<p:menuitem value="Update"
+											actionListener="#{buttonView.update}" update="messages"
+											icon="ui-icon-arrowrefresh-1-w" />
+										<p:menuitem value="Delete"
+											actionListener="#{buttonView.delete}" ajax="false"
+											icon="ui-icon-close" />
+										<p:separator />
+										<p:menuitem value="Homepage" url="http://www.primefaces.org"
+											icon="ui-icon-extlink" />
+									</p:splitButton>
+								</h:panelGrid>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Lightgreen;" />
+								<p:outputLabel value="0MB - 205MB"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Green;" />
+								<p:outputLabel value="205MB - 410MB"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Yellow;" />
+								<p:outputLabel value="410MB - 614MB"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Orange;" />
+								<p:outputLabel value="614MB - 819MB"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Red;" />
+								<p:outputLabel value="819MB - 1024MB"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Grey;" />
+								<p:outputLabel value="Invalid data"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Black;" />
+								<p:outputLabel value="Data Not Available"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton value="-" style="background:Lightgrey;" />
+								<p:outputLabel value="Not Applicable"></p:outputLabel>
+							</div>
 						</div>
+						<div class="ui-g-12 ui-md-6">
+							<div>
+								<h2>HDFS Bytes Read</h2>
+							</div>
+							<div>
+								<p:outputLabel value="/default-rack"></p:outputLabel>
+							</div>
+							<div>
+								<p:commandButton
+									value="------------------------------------------------------------------"
+									style="background:Green;" />
+							</div>
 						</div>
-            		</p:tab>
-            		
-            		<p:tab title="ADVANCED">
-            			<h2>NameNode</h2>
-            			
-            			<div class="ui-g">
-                    	<div class="ui-g-12 ui-md-6">
-                    		<div>
-                    			<p:outputLabel value="NameNode host"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="NameNode new generation size"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="NameNode maximum new generation size"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="NameNode permanent generation size"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="NameNode maximum permanent generation size"></p:outputLabel>
-                    		</div>
-                    		<BR />
-                    		<h2>DataNode</h2>
-                    		<div>
-                    			<p:outputLabel value="DataNode hosts"></p:outputLabel>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="DataNode directories permission"></p:outputLabel>
-                    		</div>
-                    		<BR />
-                    		<h2>General</h2>
-                    		<div>
-                    			<p:outputLabel value="WebHDFS Enabled"></p:outputLabel>
-                    		</div>
-                    		<BR />
-                    		<div>
-                    			<p:outputLabel value="Hadoop maximum java heap size"/>
-                    		</div>
-                    		<BR />
-                    		<div>
-                    			<p:outputLabel value="Access time precision"/>
-                    		</div>
-                    		<BR />
-                    		<div>
-                    			<p:outputLabel value="HDFS maximum checkpoint delay"/>
-                    		</div>
-                    		<BR />
-                    		<div>
-                    			<p:outputLabel value="Reserved space for HDFS"/>
-                    		</div>
-                    		<BR />
-                    		<div>
-                    			<p:outputLabel value="Block replication"/>
-                    		</div>
-                    		<BR />
-                    		<h2>NFS Gateway</h2>
-                    		<div>
-                    			<p:outputLabel value="NFSGateway host"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="NFSGateway maximum Java heap size"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="NFSGateway dump directory"/>
-                    		</div>
-                    		<div>
-                    			<p:outputLabel value="Allowed hosts"/>
-                    		</div>
-                    	</div>
-                    	
-                    	<div class="ui-g-12 ui-md-6">
-                    		<div>
-                    			<p:outputLabel value="yava-v3-dev.labs247.com"></p:outputLabel>
-                    		</div>
-                    		<div class="ui-inputgroup">
-            					<p:inputText placeholder="128" />
-            					<p:commandButton value="MB"  styleClass="white-button"/>
-        					</div>
-        					<div class="ui-inputgroup">
-            					<p:inputText placeholder="128" />
-            					<p:commandButton value="MB"  styleClass="white-button"/>
-        					</div>
-        					<div class="ui-inputgroup">
-            					<p:inputText placeholder="128" />
-            					<p:commandButton value="MB"  styleClass="white-button"/>
-        					</div>
-        					<div class="ui-inputgroup">
-            					<p:inputText placeholder="128" />
-            					<p:commandButton value="MB"  styleClass="white-button"/>
-        					</div>
-        					<BR />
-        					<BR />
-        					<div>
-        						<p:outputLabel value="yava3-01.labs247.com"/>
-        					</div>
-        					<div class="ui-inputgroup">
-        						<p:inputText placeholder="750"/>
-        					</div>
-        					<BR />
-        					<BR />
-        					<BR />
-        					<BR />
-        					<BR />
-        					<div class="ui-inputgroup">
-        						<p:inputText placeholder="None"/>
-        					</div>
-        					<div class="ui-inputgroup">
-        						<p:inputText placeholder="1024"/>
-        						<p:commandButton value="MB" styleClass="white-button"/>
-        					</div>
-        					<div class="ui-inputgroup">
-        						<p:inputText placeholder="0"/>
-        					</div>
-        					<div class="ui-inputgroup">
-        						<p:inputText placeholder="21600"/>
-        						<p:commandButton value="seconds" styleClass="white-button"/>
-        					</div>
-        					<div class="ui-inputgroup">
-        						<p:inputText placeholder="600000"/>
-        						<p:commandButton value="seconds" styleClass="white-button"/>
-        					</div>
-        					<div class="ui-inputgroup">
-        						<p:inputText placeholder="3"/>
-        					</div>
-        					<BR />
-        					<BR />
-        					<BR />
-        					<BR />
-        					<BR />
-        					<BR />
-        					<div>
-        						<p:outputLabel value="No host assigned"/>
-        					</div>
-        					<div class="ui-inputgroup">
-        						<p:inputText placeholder="1024"/>
-        						<p:commandButton value="MB" styleClass="white-button"/>
-        					</div>
-        					<div class="ui-inputgroup">
-        						<p:inputText placeholder="/tmp/.hdfs.nfs"/>
-        					</div>
-        					<div class="ui-inputgroup">
-        						<p:inputText placeholder="*rw"/>
-        					</div>
-                    	</div>
-            			</div>
-            			<p:accordionPanel>
-					        <p:tab title="hdfs-site">
-		
-								<h:panelGrid columns="2" cellpadding="5">
-								    <p:outputLabel value="Type: " />
-								    <p:outputLabel value="#{hdfsView.type}"></p:outputLabel>
-								    
-								    <p:outputLabel value="clusterName: " />
-								    <p:outputLabel value="#{hdfsView.clusterName}"></p:outputLabel>
-								    
-								    <p:outputLabel value="stackId: " />
-									<p:outputLabel value="#{hdfsView.stackId}"></p:outputLabel>
-									
-									<p:outputLabel value="version: " />
-									<p:outputLabel value="#{hdfsView.version}"></p:outputLabel>
-									
-									<p:outputLabel value="Tag: " />
-									<p:outputLabel value="#{hdfsView.tag}"></p:outputLabel>
-									
+					</div>
+					<div>
+						<p:outputLabel value="Maximum:"></p:outputLabel>
+					</div>
+					<div>
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-4">
+								<div class="ui-inputgroup">
+									<p:inputText placeholder="1024" />
+									<p:commandButton value="MB" styleClass="white-button" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</h:form>
+			</p:tab>
+
+			<p:tab title="CONFIGS">
+				<f:facet name="actions">
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-gear" id="bor" style="cursor: pointer"
+								title="Background Operation Running" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bell" id="notif" style="cursor: pointer"
+								title="Notifications" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bars" id="view" style="cursor: pointer"
+								title="Views" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-6">
+							<p:menuButton value="admin" icon="fa fa-user"
+								style="width:100%; font-size:10pt">
+								<p:menuitem value="Setting" style="font-size:10pt" />
+								<p:menuitem value="Manage YAVA" style="font-size:10pt" />
+								<p:menuitem value="About" style="font-size:10pt" />
+								<p:separator />
+								<p:menuitem value="Sign Out" style="font-size:10pt" />
+							</p:menuButton>
+						</div>
+					</div>
+				</f:facet>
+				<p:breadCrumb style="font-size:10pt">
+					<p:menuitem value="Breadcrumb" />
+					<p:menuitem value="Services" />
+					<p:menuitem value="HDFS" />
+					<p:menuitem value="Configs" />
+				</p:breadCrumb>
+				<h:form>
+					<p:growl id="messages" />
+					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+						<p:splitButton id="basic" value="Version 1"
+							actionListener="#{buttonView.save}" update="messages">
+							<p:menuitem value="Update" actionListener="#{buttonView.update}"
+								update="messages" icon="ui-icon-arrowrefresh-1-w" />
+							<p:menuitem value="Delete" actionListener="#{buttonView.delete}"
+								ajax="false" icon="ui-icon-close" />
+							<p:separator />
+							<p:menuitem value="Homepage" url="http://www.primefaces.org"
+								icon="ui-icon-extlink" />
+						</p:splitButton>
+					</h:panelGrid>
+
+					<p:tabView>
+						<p:tab title="SETTINGS">
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-6">
+									<h2>NameNode</h2>
+									<div>
+										<p:outputLabel value="NameNode directories"></p:outputLabel>
+									</div>
+
+									<h:form>
+										<p:inputTextarea rows="5" cols="30" maxlength="10"
+											value="/hadoop/hdfs/namenode" autoResize="false" />
+										<h:outputText id="display" />
+									</h:form>
+
+									<div>
+										<p:outputLabel value="NameNode Java heap size"></p:outputLabel>
+									</div>
+									<h:form>
+										<h:panelGrid columns="1" style="margin-bottom: 10px">
+											<h:outputText id="output" value="GB#{sliderView.number2}" />
+											<h:inputHidden id="txt2" value="#{sliderView.number4}" />
+											<p:slider for="txt2" display="output" style="width: 200px"
+												displayTemplate="{value}GB" />
+										</h:panelGrid>
+									</h:form>
+
+									<div>
+										<p:outputLabel value="NameNode server threads"></p:outputLabel>
+									</div>
+									<h:form>
+										<h:panelGrid columns="1" style="margin-bottom: 10px">
+											<h:outputText id="output3" value="GB#{sliderView.number6}" />
+											<h:inputHidden id="txt3" value="#{sliderView.number7}" />
+											<p:slider for="txt3" display="output3" style="width: 200px"
+												displayTemplate="{value}GB" />
+										</h:panelGrid>
+									</h:form>
+
+									<div>
+										<p:outputLabel value="Minimumm replicated blocks %"></p:outputLabel>
+									</div>
+									<h:form>
+										<h:panelGrid columns="1" style="margin-bottom: 10px">
+											<h:outputText id="output4" value="GB#{sliderView.number8}" />
+											<h:inputHidden id="txt4" value="#{sliderView.number9}" />
+											<p:slider for="txt4" display="output4" style="width: 200px"
+												displayTemplate="{value}GB" />
+										</h:panelGrid>
+									</h:form>
+								</div>
+
+								<div class="ui-g-12 ui-md-6">
+									<h2>DataNode</h2>
+									<div>
+										<p:outputLabel value="DataNode Directories"></p:outputLabel>
+									</div>
+
+									<h:form>
+										<p:inputTextarea rows="5" cols="30" maxlength="10"
+											value="/hadoop/hdfs/data" autoResize="false" />
+										<h:outputText id="display" />
+									</h:form>
+
+									<div>
+										<p:outputLabel value="DataNbode failed disk tolerance"></p:outputLabel>
+									</div>
+									<h:form>
+										<h:panelGrid columns="1" style="margin-bottom: 10px">
+											<h:outputText id="output5" value="GB#{sliderView.number10}" />
+											<h:inputHidden id="txt5" value="#{sliderView.number11}" />
+											<p:slider for="txt5" display="output5" style="width: 200px"
+												displayTemplate="{value}GB" />
+										</h:panelGrid>
+									</h:form>
+
+									<div>
+										<p:outputLabel value="DataNbode failed disk tolerance"></p:outputLabel>
+									</div>
+									<h:form>
+										<h:panelGrid columns="1" style="margin-bottom: 10px">
+											<h:outputText id="output6" value="GB#{sliderView.number12}" />
+											<h:inputHidden id="txt6" value="#{sliderView.number13}" />
+											<p:slider for="txt6" display="output6" style="width: 200px"
+												displayTemplate="{value}GB" />
+										</h:panelGrid>
+									</h:form>
+
+									<div>
+										<p:outputLabel value="DataNbode failed disk tolerance"></p:outputLabel>
+									</div>
+									<h:form>
+										<h:panelGrid columns="1" style="margin-bottom: 10px">
+											<h:outputText id="output7" value="GB#{sliderView.number14}" />
+											<h:inputHidden id="txt7" value="#{sliderView.number15}" />
+											<p:slider for="txt7" display="output7" style="width: 200px"
+												displayTemplate="{value}GB" />
+										</h:panelGrid>
+									</h:form>
+								</div>
+							</div>
+						</p:tab>
+
+						<p:tab title="ADVANCED">
+							<h2>NameNode</h2>
+
+							<div class="ui-g">
+								<div class="ui-g-12 ui-md-6">
+									<div>
+										<p:outputLabel value="NameNode host"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="NameNode new generation size"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="NameNode maximum new generation size"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="NameNode permanent generation size"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel
+											value="NameNode maximum permanent generation size"></p:outputLabel>
+									</div>
+									<BR />
+									<h2>DataNode</h2>
+									<div>
+										<p:outputLabel value="DataNode hosts"></p:outputLabel>
+									</div>
+									<div>
+										<p:outputLabel value="DataNode directories permission"></p:outputLabel>
+									</div>
+									<BR />
+									<h2>General</h2>
+									<div>
+										<p:outputLabel value="WebHDFS Enabled"></p:outputLabel>
+									</div>
+									<BR />
+									<div>
+										<p:outputLabel value="Hadoop maximum java heap size" />
+									</div>
+									<BR />
+									<div>
+										<p:outputLabel value="Access time precision" />
+									</div>
+									<BR />
+									<div>
+										<p:outputLabel value="HDFS maximum checkpoint delay" />
+									</div>
+									<BR />
+									<div>
+										<p:outputLabel value="Reserved space for HDFS" />
+									</div>
+									<BR />
+									<div>
+										<p:outputLabel value="Block replication" />
+									</div>
+									<BR />
+									<h2>NFS Gateway</h2>
+									<div>
+										<p:outputLabel value="NFSGateway host" />
+									</div>
+									<div>
+										<p:outputLabel value="NFSGateway maximum Java heap size" />
+									</div>
+									<div>
+										<p:outputLabel value="NFSGateway dump directory" />
+									</div>
+									<div>
+										<p:outputLabel value="Allowed hosts" />
+									</div>
+								</div>
+
+								<div class="ui-g-12 ui-md-6">
+									<div>
+										<p:outputLabel value="yava-v3-dev.labs247.com"></p:outputLabel>
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="128" />
+										<p:commandButton value="MB" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="128" />
+										<p:commandButton value="MB" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="128" />
+										<p:commandButton value="MB" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="128" />
+										<p:commandButton value="MB" styleClass="white-button" />
+									</div>
+									<BR /> <BR />
+									<div>
+										<p:outputLabel value="yava3-01.labs247.com" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="750" />
+									</div>
+									<BR /> <BR /> <BR /> <BR /> <BR />
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="None" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="1024" />
+										<p:commandButton value="MB" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="0" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="21600" />
+										<p:commandButton value="seconds" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="600000" />
+										<p:commandButton value="seconds" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="3" />
+									</div>
+									<BR /> <BR /> <BR /> <BR /> <BR /> <BR />
+									<div>
+										<p:outputLabel value="No host assigned" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="1024" />
+										<p:commandButton value="MB" styleClass="white-button" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="/tmp/.hdfs.nfs" />
+									</div>
+									<div class="ui-inputgroup">
+										<p:inputText placeholder="*rw" />
+									</div>
+								</div>
+							</div>
+							<p:accordionPanel>
+								<p:tab title="hdfs-site">
+
+									<h:panelGrid columns="2" cellpadding="5">
+										<p:outputLabel value="Type: " />
+										<p:outputLabel value="#{hdfsView.type}"></p:outputLabel>
+
+										<p:outputLabel value="clusterName: " />
+										<p:outputLabel value="#{hdfsView.clusterName}"></p:outputLabel>
+
+										<p:outputLabel value="stackId: " />
+										<p:outputLabel value="#{hdfsView.stackId}"></p:outputLabel>
+
+										<p:outputLabel value="version: " />
+										<p:outputLabel value="#{hdfsView.version}"></p:outputLabel>
+
+										<p:outputLabel value="Tag: " />
+										<p:outputLabel value="#{hdfsView.tag}"></p:outputLabel>
+
 									</h:panelGrid>
-									
-									<p:dataTable  var="productEntry"  value="#{hdfsView.properties}">
-									   <p:column>
-									      <h:outputText value="#{productEntry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{productEntry.value}" />
-									   </p:column>
+
+									<p:dataTable var="productEntry" value="#{hdfsView.properties}">
+										<p:column>
+											<h:outputText value="#{productEntry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{productEntry.value}" />
+										</p:column>
 									</p:dataTable>
-									
-									
+
+
 								</p:tab>
-							
-							
-							
+
+
+
 								<p:tab title="hadoop-env">
-								
-								
-									<p:dataTable  var="entry"  value="#{hdfsView.getProperties('hadoop-env')}">
-									   <p:column>
-									      <h:outputText value="#{entry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{entry.value}" />
-									   </p:column>
+
+
+									<p:dataTable var="entry"
+										value="#{hdfsView.getProperties('hadoop-env')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
 									</p:dataTable>
-								
+
 								</p:tab>
-								
+
 								<p:tab title="hadoop-metrics2.properties">
-									<p:dataTable  var="entry"  value="#{hdfsView.getProperties('hadoop-metrics2.properties')}">
-									   <p:column>
-									      <h:outputText value="#{entry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{entry.value}" />
-									   </p:column>
+									<p:dataTable var="entry"
+										value="#{hdfsView.getProperties('hadoop-metrics2.properties')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
 									</p:dataTable>
-						 
+
 								</p:tab>
-								
+
 								<p:tab title="hadoop-policy">
-									<p:dataTable  var="entry"  value="#{hdfsView.getProperties('hadoop-policy')}">
-									   <p:column>
-									      <h:outputText value="#{entry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{entry.value}" />
-									   </p:column>
-									</p:dataTable>		
-								</p:tab>
-								
-								<p:tab title="hdfs-log4j">
-									<p:dataTable  var="entry"  value="#{hdfsView.getProperties('hdfs-log4j')}">
-									   <p:column>
-									      <h:outputText value="#{entry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{entry.value}" />
-									   </p:column>
-									</p:dataTable>		
-								</p:tab>
-								
-							  <p:tab title="ranger-hdfs-plugin-properties">
-								
-									<p:dataTable  var="entry"  value="#{hdfsView.getProperties('ranger-hdfs-plugin-properties')}">
-									   <p:column>
-									      <h:outputText value="#{entry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{entry.value}" />
-									   </p:column>
+									<p:dataTable var="entry"
+										value="#{hdfsView.getProperties('hadoop-policy')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
 									</p:dataTable>
-									
+								</p:tab>
+
+								<p:tab title="hdfs-log4j">
+									<p:dataTable var="entry"
+										value="#{hdfsView.getProperties('hdfs-log4j')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+
+								<p:tab title="ranger-hdfs-plugin-properties">
+
+									<p:dataTable var="entry"
+										value="#{hdfsView.getProperties('ranger-hdfs-plugin-properties')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+
 								</p:tab>
 								<p:tab title="ranger-hdfs-policymgr-ssl">
-									<p:dataTable  var="entry"  value="#{hdfsView.getProperties('ranger-hdfs-policymgr-ssl')}">
-									   <p:column>
-									      <h:outputText value="#{entry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{entry.value}" />
-									   </p:column>
-									</p:dataTable>		
+									<p:dataTable var="entry"
+										value="#{hdfsView.getProperties('ranger-hdfs-policymgr-ssl')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
 								</p:tab>
-								
-								<p:tab title="ssl-client">
-									<p:dataTable  var="entry"  value="#{hdfsView.getProperties('ssl-client')}">
-									   <p:column>
-									      <h:outputText value="#{entry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{entry.value}" />
-									   </p:column>
-									</p:dataTable>		
-								</p:tab>
-								
-								<p:tab title="ssl-server">
-									<p:dataTable  var="entry"  value="#{hdfsView.getProperties('ssl-server')}">
-									   <p:column>
-									      <h:outputText value="#{entry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{entry.value}" />
-									   </p:column>
-									</p:dataTable>		
-								</p:tab>
-								
-								<p:tab title="viewfs-mount-table">
-									<p:dataTable  var="entry"  value="#{hdfsView.getProperties('viewfs-mount-table')}">
-									   <p:column>
-									      <h:outputText value="#{entry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{entry.value}" />
-									   </p:column>
-									</p:dataTable>		
-								</p:tab>
-								
-								<p:tab title="ranger-hdfs-audit">
-									<p:dataTable  var="entry"  value="#{hdfsView.getProperties('ranger-hdfs-audit')}">
-									   <p:column>
-									      <h:outputText value="#{entry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{entry.value}" />
-									   </p:column>
-									</p:dataTable>		
-								</p:tab>
-								
-								<p:tab title="ranger-hdfs-security">
-									<p:dataTable  var="entry"  value="#{hdfsView.getProperties('ranger-hdfs-security')}">
-									   <p:column>
-									      <h:outputText value="#{entry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{entry.value}" />
-									   </p:column>
-									</p:dataTable>		
-								</p:tab>
-								
-								<p:tab title="core-site">
-									<p:dataTable  var="entry"  value="#{hdfsView.getProperties('core-site')}">
-									   <p:column>
-									      <h:outputText value="#{entry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{entry.value}" />
-									   </p:column>
-									</p:dataTable>		
-								</p:tab>
-								
-								<p:tab title="hdfs-site">
-									<p:dataTable  var="entry"  value="#{hdfsView.getProperties('hdfs-site')}">
-									   <p:column>
-									      <h:outputText value="#{entry.key}" />
-									   </p:column>
-									   <p:column>
-									       <h:outputText value="#{entry.value}" />
-									   </p:column>
-									</p:dataTable>		
-								</p:tab>
-					    </p:accordionPanel>
-            		</p:tab>
-        		</p:tabView>
-    			
-			</h:form>
-			
-		</p:tab>
-		
-		<p:tab title="METRICS">
-		<h:panelGrid columns="3" cellpadding="0" value="test" style="width:100%">
-		<p:breadCrumb style="font-size:10pt">
-		   	<p:menuitem value="Breadcrumb"/>
-		   	<p:menuitem value="Services"/>
-		   	<p:menuitem value="HDFS"/>
-		    <p:menuitem value="Metrics"/>
-		</p:breadCrumb>
-			<p:button value="Metric Action" icon="pi pi-star" style="float:right;margin:0;padding:0">
-    			<f:param name="bookmark" />
-			</p:button>
-			<p:button value="Last 1 Hour" icon="pi pi-star" style="margin-right:40px;float:right;margin-left:0;padding:0">
-    			<f:param name="Last" />
-			</p:button>
-		</h:panelGrid>
 
-    		<style type="text/css">
-    		
-            .ui-panel, div.ui-state-hover {
-                margin: 10px;
-                width:200px;
-            }
-             
-            .ui-dashboard-column {
-                width:220px;
-            }
-      	  </style>
-      	  
- 
-			<div style="height:500px">
-			    <h:form>
-			        <p:growl id="msgs" showDetail="true" />
-			 
-			        <p:dashboard id="board" model="#{dashboardView.model}">
-			            <p:ajax event="reorder" listener="#{dashboardView.handleReorder}" update="msgs" />
-			 
-			            <p:panel id="NameNodeGCcount" header="NameNode GC count" style="font-size:75%">
-			            </p:panel>
-			 
-			            <p:panel id="NameNodeHostLoad" header="NameNode Host Load" style="font-size:75%">
-			            </p:panel>
-			 
-			            <p:panel id="UnderReplicatedBlocks" header="Under Replicated Blocks" style="font-size:75%">
-			            </p:panel>
-			 
-			            <p:panel id="NameNodeGCtime" header="NameNode GCtime" style="font-size:75%">
-			            </p:panel>
-			 
-			            <p:panel id="NameNodeRPC" header="NameNode RPC" style="font-size:75%">
-			            </p:panel>
-			            
-			            <p:panel id="HDFSSpaceUtilization" header="HDFS Space Utilization" style="font-size:75%">
-			            </p:panel>
-			            
-			            <p:panel id="NNConnectionLoad" header="NN Connection Load" style="font-size:75%">
-			            </p:panel>
-			            
-			            <p:panel id="Faileddiskvolumes" header="Failed disk volumes" style="font-size:75%">
-			            </p:panel>
-			            
-			            <p:panel id="Add" style="text-align:center">
-			            	<h:outputText value="+" style="font-size:250%"/>
-			            </p:panel>
-			            
-			            <p:panel id="NameNodeHeap" header="NameNode Heap" style="font-size:75%">
-			            </p:panel>
-			            
-			            <p:panel id="BlocksWithCorruptedReplicas" header="Corrupted Replica Blocks" style="font-size:75%">
-			            </p:panel>
-			            
-			        </p:dashboard>
-			 
-			        <div style="clear:both" />
-			    </h:form>
-			</div>
-    	</p:tab>
-		
-		
-	</p:tabView>
-</h:form>    
+								<p:tab title="ssl-client">
+									<p:dataTable var="entry"
+										value="#{hdfsView.getProperties('ssl-client')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+
+								<p:tab title="ssl-server">
+									<p:dataTable var="entry"
+										value="#{hdfsView.getProperties('ssl-server')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+
+								<p:tab title="viewfs-mount-table">
+									<p:dataTable var="entry"
+										value="#{hdfsView.getProperties('viewfs-mount-table')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+
+								<p:tab title="ranger-hdfs-audit">
+									<p:dataTable var="entry"
+										value="#{hdfsView.getProperties('ranger-hdfs-audit')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+
+								<p:tab title="ranger-hdfs-security">
+									<p:dataTable var="entry"
+										value="#{hdfsView.getProperties('ranger-hdfs-security')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+
+								<p:tab title="core-site">
+									<p:dataTable var="entry"
+										value="#{hdfsView.getProperties('core-site')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+
+								<p:tab title="hdfs-site">
+									<p:dataTable var="entry"
+										value="#{hdfsView.getProperties('hdfs-site')}">
+										<p:column>
+											<h:outputText value="#{entry.key}" />
+										</p:column>
+										<p:column>
+											<h:outputText value="#{entry.value}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+							</p:accordionPanel>
+						</p:tab>
+					</p:tabView>
+
+				</h:form>
+
+			</p:tab>
+
+			<p:tab title="METRICS">
+				<f:facet name="actions">
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-gear" id="bor" style="cursor: pointer"
+								title="Background Operation Running" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bell" id="notif" style="cursor: pointer"
+								title="Notifications" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<i class="fa fa-bars" id="view" style="cursor: pointer"
+								title="Views" />
+
+						</div>
+
+						<div class="ui-g-12 ui-md-6 ui-lg-6">
+							<p:menuButton value="admin" icon="fa fa-user"
+								style="width:100%; font-size:10pt">
+								<p:menuitem value="Setting" style="font-size:10pt" />
+								<p:menuitem value="Manage YAVA" style="font-size:10pt" />
+								<p:menuitem value="About" style="font-size:10pt" />
+								<p:separator />
+								<p:menuitem value="Sign Out" style="font-size:10pt" />
+							</p:menuButton>
+						</div>
+					</div>
+				</f:facet>
+				<h:panelGrid columns="3" cellpadding="0" value="test"
+					style="width:100%">
+					<p:breadCrumb style="font-size:10pt">
+						<p:menuitem value="Breadcrumb" />
+						<p:menuitem value="Services" />
+						<p:menuitem value="HDFS" />
+						<p:menuitem value="Metrics" />
+					</p:breadCrumb>
+					<p:button value="Metric Action" icon="pi pi-star"
+						style="float:right;margin:0;padding:0">
+						<f:param name="bookmark" />
+					</p:button>
+					<p:button value="Last 1 Hour" icon="pi pi-star"
+						style="margin-right:40px;float:right;margin-left:0;padding:0">
+						<f:param name="Last" />
+					</p:button>
+				</h:panelGrid>
+
+				<style type="text/css">
+.ui-panel, div.ui-state-hover {
+	margin: 10px;
+	width: 200px;
+}
+
+.ui-dashboard-column {
+	width: 220px;
+}
+</style>
+
+
+				<div style="height: 500px">
+					<h:form>
+						<p:growl id="msgs" showDetail="true" />
+
+						<p:dashboard id="board" model="#{dashboardView.model}">
+							<p:ajax event="reorder" listener="#{dashboardView.handleReorder}"
+								update="msgs" />
+
+							<p:panel id="NameNodeGCcount" header="NameNode GC count"
+								style="font-size:75%">
+							</p:panel>
+
+							<p:panel id="NameNodeHostLoad" header="NameNode Host Load"
+								style="font-size:75%">
+							</p:panel>
+
+							<p:panel id="UnderReplicatedBlocks"
+								header="Under Replicated Blocks" style="font-size:75%">
+							</p:panel>
+
+							<p:panel id="NameNodeGCtime" header="NameNode GCtime"
+								style="font-size:75%">
+							</p:panel>
+
+							<p:panel id="NameNodeRPC" header="NameNode RPC"
+								style="font-size:75%">
+							</p:panel>
+
+							<p:panel id="HDFSSpaceUtilization"
+								header="HDFS Space Utilization" style="font-size:75%">
+							</p:panel>
+
+							<p:panel id="NNConnectionLoad" header="NN Connection Load"
+								style="font-size:75%">
+							</p:panel>
+
+							<p:panel id="Faileddiskvolumes" header="Failed disk volumes"
+								style="font-size:75%">
+							</p:panel>
+
+							<p:panel id="Add" style="text-align:center">
+								<h:outputText value="+" style="font-size:250%" />
+							</p:panel>
+
+							<p:panel id="NameNodeHeap" header="NameNode Heap"
+								style="font-size:75%">
+							</p:panel>
+
+							<p:panel id="BlocksWithCorruptedReplicas"
+								header="Corrupted Replica Blocks" style="font-size:75%">
+							</p:panel>
+
+						</p:dashboard>
+
+						<div style="clear: both" />
+					</h:form>
+				</div>
+			</p:tab>
+
+
+		</p:tabView>
+	</h:form>
 
 </ui:composition>
-    
+
